@@ -9,7 +9,7 @@ PRAGMA foreign_keys = ON;
 -- USERS TABLE
 
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     full_name TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
@@ -25,7 +25,7 @@ CREATE TABLE users (
 -- DEPARTMENTS TABLE
 
 
-CREATE TABLE departments (
+CREATE TABLE IF NOT EXISTS departments (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     department_name TEXT NOT NULL UNIQUE,
     description TEXT,
@@ -36,7 +36,7 @@ CREATE TABLE departments (
 -- COMPLAINTS TABLE
 
 
-CREATE TABLE complaints (
+CREATE TABLE IF NOT EXISTS complaints (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
 
     user_id INTEGER NOT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE complaints (
 -- COMPLAINT HISTORY TABLE
 
 
-CREATE TABLE complaint_history (
+CREATE TABLE IF NOT EXISTS complaint_history (
 
     id INTEGER PRIMARY KEY AUTOINCREMENT,
 
@@ -129,14 +129,14 @@ CREATE TABLE complaint_history (
 -- INDEXES
 
 
-CREATE INDEX idx_user_email
+CREATE INDEX IF NOT EXISTS idx_user_email
 ON users(email);
 
-CREATE INDEX idx_complaint_status
+CREATE INDEX IF NOT EXISTS idx_complaint_status
 ON complaints(status);
 
-CREATE INDEX idx_department
+CREATE INDEX IF NOT EXISTS idx_department
 ON complaints(department_id);
 
-CREATE INDEX idx_priority
+CREATE INDEX IF NOT EXISTS idx_priority
 ON complaints(priority);
