@@ -7,6 +7,9 @@ content %}
 
 {% if success_message %}
 <div class="message success">{{ success_message }}</div>
+{% if severity %}
+<p><strong>AI Severity:</strong> {{ severity }}</p>
+{% endif %}
 {% endif %} {% if error_message %}
 <div class="message error">{{ error_message }}</div>
 {% endif %}

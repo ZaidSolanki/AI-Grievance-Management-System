@@ -1,5 +1,4 @@
-from app import db
-from app.models.user import User
+from app.db import get_user_by_email, create_user
 
 
 class AuthService:
@@ -9,19 +8,18 @@ class AuthService:
         if role not in {"user", "admin"}:
             raise ValueError("Invalid role")
 
-        existing_user = User.query.filter_by(email=email).first()
+        existing_user = get_user_by_email(email)
         if existing_user:
             raise ValueError("Email already registered")
 
-        user = User(username=username, email=email, role=role)
-        user.set_password(password)
-        db.session.add(user)
-        db.session.commit()
+        from werkzeug.security import generate_password_hash
+        password_hash = generate_password_hash(password)
+        user = create_user(username=username, email=email, password_hash=password_hash, role=role)
         return user
 
     @staticmethod
     def login(email, password, role="user"):
-        user = User.query.filter_by(email=email).first()
+        user = get_user_by_email(email)
         if not user:
             raise ValueError("Invalid email or password")
 
@@ -32,3 +30,8 @@ class AuthService:
             raise ValueError("Selected role does not match the account")
 
         return user
+
+
+def load_user(user_id):
+    from app.db import get_user_by_id
+    return get_user_by_id(int(user_id))
