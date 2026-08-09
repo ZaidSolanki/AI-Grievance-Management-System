@@ -1,45 +1,44 @@
-"""
-=========================================
-AI Grievance Management System
-Flask Application Factory
-=========================================
-"""
+import os
 
 from flask import Flask
+from flask_login import LoginManager
+
 from config import Config
 
+login_manager = LoginManager()
 
-def create_app():
-    """
-    Creates and configures the Flask application.
-    """
 
-    app = Flask(__name__)
+def create_app(test_config=None):
+	base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+	template_dir = os.path.join(base_dir, "templates")
+	static_dir = os.path.join(base_dir, "static")
 
-    # =========================================
-    # Load Configuration
-    # =========================================
+	app = Flask(
+		__name__,
+		instance_relative_config=True,
+		template_folder=template_dir,
+		static_folder=static_dir,
+	)
+	app.config.from_object(Config)
 
-    app.config["SECRET_KEY"] = Config.SECRET_KEY
-    app.config["MAX_CONTENT_LENGTH"] = Config.MAX_CONTENT_LENGTH
-    app.config["UPLOAD_FOLDER"] = str(Config.UPLOAD_FOLDER)
+	if test_config:
+		app.config.update(test_config)
 
-    # =========================================
-    # Register Routes
-    # =========================================
+	os.makedirs(app.config.get("UPLOAD_FOLDER", os.path.join(app.root_path, "static", "uploads")), exist_ok=True)
 
-    from app.routes.auth import auth_bp
-    from app.routes.user import user_bp
-    from app.routes.admin import admin_bp
-    from app.routes.complaint import complaint_bp
-    from app.routes.ai import ai_bp
-    from app.routes.api import api_bp
+	login_manager.init_app(app)
+	login_manager.login_view = "auth.login"
 
-    app.register_blueprint(auth_bp)
-    app.register_blueprint(user_bp)
-    app.register_blueprint(admin_bp)
-    app.register_blueprint(complaint_bp)
-    app.register_blueprint(ai_bp)
-    app.register_blueprint(api_bp)
+	from app.services.auth_service import load_user
 
-    return app
+	login_manager.user_loader(load_user)
+
+	from app.routes.main import main_bp
+	from app.routes.auth import auth_bp
+	from app.routes.user import user_bp
+
+	app.register_blueprint(main_bp)
+	app.register_blueprint(auth_bp)
+	app.register_blueprint(user_bp)
+
+	return app

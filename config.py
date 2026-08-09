@@ -5,39 +5,29 @@ Application Configuration
 =========================================
 """
 
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+BASE_DIR = Path(__file__).resolve().parent
 
 
 class Config:
-    """
-    Base Configuration
-    """
-
-    # Project Paths
-
-    BASE_DIR = Path(__file__).resolve().parent
+    BASE_DIR = BASE_DIR
 
     DATABASE_PATH = BASE_DIR / "database" / "grievance.db"
 
     UPLOAD_FOLDER = BASE_DIR / "static" / "uploads" / "complaints"
-
     PROFILE_FOLDER = BASE_DIR / "static" / "uploads" / "profile"
 
-    # Flask Configuration
+    SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key")
 
-    SECRET_KEY = "change_this_secret_key_before_production"
+    MAX_CONTENT_LENGTH = 5 * 1024 * 1024
 
-    MAX_CONTENT_LENGTH = 5 * 1024 * 1024   # 5 MB
-
-    ALLOWED_EXTENSIONS = {
-        "png",
-        "jpg",
-        "jpeg"
-    }
-
-    # Gemini AI
+    ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
 
     GEMINI_MODEL = "gemini-2.5-flash"
-
-    # API Key will be loaded later from .env
-    GEMINI_API_KEY = None
+    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")

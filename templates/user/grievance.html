@@ -1,0 +1,53 @@
+{% extends "base.html" %} {% block title %}Grievance{% endblock %} {% block
+content %}
+<h1>Submit a Grievance</h1>
+<p class="muted">
+  Logged in as {{ current_user.username }}. Use this form to add a grievance.
+</p>
+
+{% if success_message %}
+<div class="message success">{{ success_message }}</div>
+{% if severity %}
+<p><strong>AI Severity:</strong> {{ severity }}</p>
+{% endif %}
+{% endif %} {% if error_message %}
+<div class="message error">{{ error_message }}</div>
+{% endif %}
+
+<form method="post">
+  <label for="title">Title</label>
+  <input
+    id="title"
+    name="title"
+    type="text"
+    placeholder="Short summary"
+    required
+  />
+
+  <label for="category">Category</label>
+  <select id="category" name="category" required>
+    <option value="">Select category</option>
+    <option value="Infrastructure">Infrastructure</option>
+    <option value="Sanitation">Sanitation</option>
+    <option value="Water">Water</option>
+    <option value="Electricity">Electricity</option>
+    <option value="Safety">Safety</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <label for="description">Description</label>
+  <textarea
+    id="description"
+    name="description"
+    rows="6"
+    placeholder="Describe the problem in detail"
+    required
+  ></textarea>
+
+  <button type="submit">Submit Grievance</button>
+</form>
+
+<div class="link-row">
+  <span>You can submit as many grievances as needed.</span>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block
+content %}
+<h1>AI Grievance Management System</h1>
+<p class="muted">
+  Welcome to the AI-powered grievance portal. Submit and track complaints with
+  AI-assisted severity classification.
+</p>
+<div class="link-row">
+  <a href="{{ url_for('auth.login') }}" class="btn">Login</a>
+  <a href="{{ url_for('auth.signup') }}" class="btn btn-secondary">Sign Up</a>
+  <a href="{{ url_for('user.grievance') }}" class="btn btn-secondary">Submit Grievance</a>
+</div>
+{% endblock %}

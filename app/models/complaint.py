@@ -45,6 +45,8 @@ class Complaint:
 
     longitude: Optional[float] = None
 
+    severity: str = "Medium"
+
     created_at: Optional[str] = None
 
     updated_at: Optional[str] = None
