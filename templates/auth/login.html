@@ -1,68 +1,110 @@
-{% extends "base.html" %} {% block title %}Login{% endblock %} {% block content
-%}
-<h1>Welcome back</h1>
-<p class="muted">Use this form to test the login API endpoint.</p>
+<!DOCTYPE html>
+<html lang="en">
 
-<form id="login-form">
-  <label for="email">Email</label>
-  <input
-    id="email"
-    name="email"
-    type="email"
-    placeholder="you@example.com"
-    required
-  />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Login – AI Grievance Portal</title>
+    <link rel="stylesheet" href="../../static/css/auth.css">
+</head>
 
-  <label for="password">Password</label>
-  <input
-    id="password"
-    name="password"
-    type="password"
-    placeholder="Enter password"
-    required
-  />
+<body class="auth-page">
+    <section class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-left">
+                <div class="brand">
+                    <div class="logo">AG</div>
+                    <div>
+                        <h1>Welcome back</h1>
+                        <div class="text-small text-muted">Sign in to lodge or track your grievance with ease.</div>
+                    </div>
+                </div>
 
-  <label for="role">Role</label>
-  <select id="role" name="role">
-    <option value="user">User</option>
-    <option value="admin">Admin</option>
-  </select>
+                <div style="margin-top:0.8rem;">
+                    <div class="role-toggle" role="tablist" aria-label="Choose sign-in role" data-role="citizen">
+                        <div class="slider" aria-hidden="true"></div>
+                        <button type="button" class="toggle-item active" data-role="citizen">Citizen</button>
+                        <button type="button" class="toggle-item" data-role="admin">Admin</button>
+                    </div>
+                </div>
 
-  <button type="submit">Log in</button>
-</form>
+                <form class="auth-form" action="../base.html" method="get">
+                    <div class="form-field">
+                        <div class="input-icon" aria-hidden="true">
+                            <!-- Mail icon -->
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.6">
+                                <path d="M3 8l9 6 9-6"></path>
+                                <path d="M21 8v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"></path>
+                            </svg>
+                        </div>
+                        <input id="email" type="email" name="email" placeholder=" " required>
+                        <label for="email">Email Address</label>
+                    </div>
 
-<div id="login-message" class="message"></div>
+                    <div class="form-field">
+                        <div class="input-icon" aria-hidden="true">
+                            <!-- Lock icon -->
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.6">
+                                <rect x="3" y="11" width="18" height="11" rx="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                        </div>
+                        <input id="password" type="password" name="password" placeholder=" " required>
+                        <label for="password">Password</label>
+                    </div>
 
-<div class="link-row">
-  <span>Need an account?</span>
-  <a href="/auth/signup">Create one</a>
-</div>
+                    <div class="auth-actions">
+                        <label class="checkbox-group">
+                            <input type="checkbox" name="remember" id="remember">
+                            <span class="checkbox-box" aria-hidden="true"></span>
+                            <span class="checkbox-label">Remember Me</span>
+                        </label>
+                        <div class="links"><a href="forgot_password.html">Forgot Password?</a></div>
+                    </div>
 
-<script>
-  const form = document.getElementById("login-form");
-  const messageBox = document.getElementById("login-message");
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                </form>
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const formData = new FormData(form);
+                <div class="auth-footer">
+                    Don’t have an account? <a href="register.html">Register now</a>
+                </div>
+            </div>
 
-    try {
-      const response = await fetch("/auth/login", {
-        method: "POST",
-        body: formData,
-      });
+            <div class="auth-right">
+                <div class="status-chip">Live response</div>
+                <div class="visual" aria-hidden="true">
+                    <!-- decorative microphone / illustration -->
+                    <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="url(#g)" stroke-width="1.8"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#5b5ce7" />
+                                <stop offset="1" stop-color="#4cc9f0" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M12 1v11" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <rect x="8" y="6" width="8" height="10" rx="4"></rect>
+                        <path d="M5 12h1a6 6 0 0 0 12 0h1" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <div class="right-text">
+                    <h3>Premium Support</h3>
+                    <p class="text-muted">Fast, multilingual voice-assisted grievance filing with AI routing—secure and
+                        accessible.</p>
+                </div>
+                <div class="mini-stat">
+                    <strong>12K+</strong>
+                    <span>cases routed</span>
+                </div>
+            </div>
+        </div>
 
-      const data = await response.json();
-      messageBox.className = "message " + (response.ok ? "success" : "error");
-      messageBox.textContent = data.message || "Login completed.";
+    </section>
 
-      if (response.ok && data.redirect_url) {
-        window.location.href = data.redirect_url;
-      }
-    } catch (error) {
-      messageBox.className = "message error";
-      messageBox.textContent = "Unable to reach the login endpoint.";
-    }
-  });
-</script>
-{% endblock %}
+    <script src="../../static/js/main.js"></script>
+    <script src="../../static/js/auth.js"></script>
+</body>
+
+</html>

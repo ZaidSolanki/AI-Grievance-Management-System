@@ -1,73 +1,121 @@
-{% extends "base.html" %} {% block title %}Sign up{% endblock %} {% block
-content %}
-<h1>Create an account</h1>
-<p class="muted">Use this form to test the signup API endpoint.</p>
+<!DOCTYPE html>
+<html lang="en">
 
-<form id="signup-form">
-  <label for="username">Username</label>
-  <input
-    id="username"
-    name="username"
-    type="text"
-    placeholder="Choose a username"
-    required
-  />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register – AI Grievance Portal</title>
+    <link rel="stylesheet" href="../../static/css/auth.css">
+</head>
 
-  <label for="email">Email</label>
-  <input
-    id="email"
-    name="email"
-    type="email"
-    placeholder="you@example.com"
-    required
-  />
+<body class="auth-page">
+    <section class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-left">
+                <div class="brand">
+                    <div class="logo">AG</div>
+                    <div>
+                        <h1>Create your account</h1>
+                        <div class="text-small text-muted">Register as a citizen to lodge grievances and track updates
+                            easily.</div>
+                    </div>
+                </div>
 
-  <label for="password">Password</label>
-  <input
-    id="password"
-    name="password"
-    type="password"
-    placeholder="Create a password"
-    required
-  />
+                <form class="auth-form" action="login.html" method="get">
+                    <div class="form-field">
+                        <div class="input-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.6">
+                                <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z"></path>
+                                <path d="M17 14c-2.33 1.67-6 1.67-8.33 0"></path>
+                            </svg></div>
+                        <input id="full-name" type="text" name="full_name" placeholder=" " required>
+                        <label for="full-name">Full Name</label>
+                    </div>
 
-  <label for="role">Role</label>
-  <select id="role" name="role">
-    <option value="user">User</option>
-    <option value="admin">Admin</option>
-  </select>
+                    <div class="form-field">
+                        <div class="input-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.6">
+                                <path d="M3 8l9 6 9-6"></path>
+                                <path d="M21 8v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"></path>
+                            </svg></div>
+                        <input id="email" type="email" name="email" placeholder=" " required>
+                        <label for="email">Email Address</label>
+                    </div>
 
-  <button type="submit">Create account</button>
-</form>
+                    <div class="form-field">
+                        <div class="input-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.6">
+                                <path
+                                    d="M17 20H7a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3l2 2h5a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2z" />
+                            </svg></div>
+                        <input id="phone" type="tel" name="phone" placeholder=" " required>
+                        <label for="phone">Phone Number</label>
+                    </div>
 
-<div id="signup-message" class="message"></div>
+                    <div class="form-field">
+                        <div class="input-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.6">
+                                <path d="M3 12h18" />
+                                <path d="M3 6h18" />
+                            </svg></div>
+                        <input id="address" type="text" name="address" placeholder=" " required>
+                        <label for="address">Residential Address</label>
+                    </div>
 
-<div class="link-row">
-  <span>Already registered?</span>
-  <a href="/auth/login">Log in</a>
-</div>
+                    <div class="form-field">
+                        <div class="input-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.6">
+                                <rect x="3" y="11" width="18" height="11" rx="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg></div>
+                        <input id="password" type="password" name="password" placeholder=" " required>
+                        <label for="password">Password</label>
+                    </div>
 
-<script>
-  const form = document.getElementById("signup-form");
-  const messageBox = document.getElementById("signup-message");
+                    <div class="form-field">
+                        <div class="input-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.6">
+                                <rect x="3" y="11" width="18" height="11" rx="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg></div>
+                        <input id="confirm-password" type="password" name="confirm_password" placeholder=" " required>
+                        <label for="confirm-password">Confirm Password</label>
+                    </div>
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const formData = new FormData(form);
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </form>
 
-    try {
-      const response = await fetch("/auth/signup", {
-        method: "POST",
-        body: formData,
-      });
+                <div class="auth-footer">
+                    Already registered? <a href="login.html">Sign in here</a>
+                </div>
+            </div>
 
-      const data = await response.json();
-      messageBox.className = "message " + (response.ok ? "success" : "error");
-      messageBox.textContent = data.message || "Signup completed.";
-    } catch (error) {
-      messageBox.className = "message error";
-      messageBox.textContent = "Unable to reach the signup endpoint.";
-    }
-  });
-</script>
-{% endblock %}
+            <div class="auth-right">
+                <div class="visual" aria-hidden="true">
+                    <svg width="140" height="120" viewBox="0 0 24 24" fill="none" stroke="url(#rg)" stroke-width="1.6"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="rg" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#1e3a8a" />
+                                <stop offset="1" stop-color="#0d9488" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M12 3v5" stroke-linecap="round"></path>
+                        <circle cx="12" cy="11" r="4"></circle>
+                        <path d="M8 18h8" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <div class="right-text">
+                    <h3>Join the Civic Network</h3>
+                    <p class="text-muted">Create an account to submit voice or typed grievances and get real-time
+                        updates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../../static/js/main.js"></script>
+    <script src="../../static/js/auth.js"></script>
+</body>
+
+</html>

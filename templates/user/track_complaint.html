@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Track Complaint - AI Grievance Portal</title>
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" href="../../static/css/user.css">
+</head>
+
+<body>
+    <div class="sidebar-layout">
+        <aside class="sidebar" aria-label="Sidebar navigation">
+            <button class="button sidebar-back" type="button" aria-label="Back to welcome page">&larr;</button>
+            <div class="sidebar-brand">
+                <div class="brand-box">
+                    <div class="brand-icon">AG</div>
+                    <div>
+                        <h2 class="brand-title">Portal Menu</h2>
+                        <div class="brand-sub text-small text-muted">Civic Services</div>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="section-title">CITIZEN PORTAL</div>
+                    <a class="nav-item" href="dashboard.html">
+                        <span class="icon">🏠</span>
+                        <span>Dashboard</span>
+                    </a>
+                    <a class="nav-item" href="complaint_form.html">
+                        <span class="icon">📝</span>
+                        <span>Lodge New Grievance</span>
+                    </a>
+                    <a class="nav-item" href="complaint_history.html">
+                        <span class="icon">📂</span>
+                        <span>Complaint History</span>
+                    </a>
+                    <a class="nav-item active" href="track_complaint.html">
+                        <span class="icon">🚦</span>
+                        <span>Track Complaint</span>
+                    </a>
+                    <a class="nav-item" href="profile.html">
+                        <span class="icon">👤</span>
+                        <span>Profile</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="section-title">ADMIN PORTAL</div>
+                    <a class="nav-item" href="../admin/dashboard.html">
+                        <span class="icon">📊</span>
+                        <span>Admin Dashboard</span>
+                    </a>
+                    <a class="nav-item" href="../admin/complaints.html">
+                        <span class="icon">🧾</span>
+                        <span>All Complaints</span>
+                    </a>
+                    <a class="nav-item" href="../admin/analytics.html">
+                        <span class="icon">📈</span>
+                        <span>Analytics</span>
+                    </a>
+                    <a class="nav-item" href="../admin/departments.html">
+                        <span class="icon">🏛️</span>
+                        <span>Departments</span>
+                    </a>
+                    <a class="nav-item" href="../admin/users.html">
+                        <span class="icon">👥</span>
+                        <span>Citizen Users</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+        <div class="main-content">
+            <header class="navbar" role="banner">
+                <button class="sidebar-toggle" type="button" aria-label="Toggle sidebar" aria-expanded="false">
+                    <span class="toggle-line"></span>
+                    <span class="toggle-line"></span>
+                    <span class="toggle-line"></span>
+                </button>
+
+                <div class="navbar-brand">
+                    <span class="brand-ai">AI</span>
+                    <div class="brand-copy-wrap">
+                        <strong>AI Grievance Portal</strong>
+                        <div class="text-small text-muted">Citizen-friendly grievance lodging</div>
+                    </div>
+                </div>
+
+                <div class="navbar-controls">
+                    <div class="search-input">
+                        <input id="global-search" type="search" placeholder="Search complaints, departments, IDs..."
+                            aria-label="Search complaints">
+                    </div>
+
+                    <div class="language-switcher" aria-label="Language selector">
+                        <button class="language-button" type="button" aria-expanded="false">
+                            <span class="language-label">English</span>
+                            <span class="language-caret">▾</span>
+                        </button>
+                        <div class="language-menu" role="menu" aria-label="Select language">
+                            <button class="language-option is-active" type="button" data-lang="en">English</button>
+                            <button class="language-option" type="button" data-lang="hi">Hindi</button>
+                        </div>
+                    </div>
+
+                    <div class="profile-menu">
+                        <div class="profile-avatar">P</div>
+                        <div class="profile-meta">
+                            <div class="profile-name">Priya Citizen</div>
+                            <div class="text-small text-muted">My Account</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="content-area">
+                <div class="container">
+                    <section class="content-hero">
+                        <div>
+                            <h1>Track your complaint</h1>
+                            <p class="text-small text-muted">See live updates, department progress, and next steps for
+                                your grievance in one polished view.</p>
+                        </div>
+                    </section>
+
+                    <section class="track-summary-grid">
+                        <article class="summary-card glass-card">
+                            <strong>Complaint ID</strong>
+                            <span>#CMP-1024</span>
+                        </article>
+                        <article class="summary-card glass-card">
+                            <strong>Current status</strong>
+                            <span>In Progress</span>
+                        </article>
+                        <article class="summary-card glass-card">
+                            <strong>Assigned to</strong>
+                            <span>Power Grid</span>
+                        </article>
+                    </section>
+
+                    <section class="track-layout">
+                        <article class="glass-card track-panel">
+                            <div class="track-heading">
+                                <div>
+                                    <h2>Live progress</h2>
+                                    <p class="text-small text-muted">Updates are refreshed automatically for faster
+                                        citizen tracking.</p>
+                                </div>
+                                <span class="status-chip status-in-progress">In Progress</span>
+                            </div>
+
+                            <div class="timeline" id="complaint-timeline">
+                                <div class="timeline-fill" aria-hidden="true"></div>
+
+                                <div class="timeline-item completed">
+                                    <div class="timeline-marker">1</div>
+                                    <div class="timeline-content">
+                                        <div class="text-small text-muted">Complaint recorded</div>
+                                        <strong>Submitted</strong>
+                                    </div>
+                                    <div class="timeline-meta">2026-08-02</div>
+                                </div>
+
+                                <div class="timeline-item completed">
+                                    <div class="timeline-marker">2</div>
+                                    <div class="timeline-content">
+                                        <div class="text-small text-muted">AI review completed</div>
+                                        <strong>Classified</strong>
+                                    </div>
+                                    <div class="timeline-meta">2026-08-02</div>
+                                </div>
+
+                                <div class="timeline-item completed">
+                                    <div class="timeline-marker">3</div>
+                                    <div class="timeline-content">
+                                        <div class="text-small text-muted">Department assignment</div>
+                                        <strong>Power Grid assigned</strong>
+                                    </div>
+                                    <div class="timeline-meta">2026-08-03</div>
+                                </div>
+
+                                <div class="timeline-item active">
+                                    <div class="timeline-marker">4</div>
+                                    <div class="timeline-content">
+                                        <div class="text-small text-muted">Field team action</div>
+                                        <strong>Repair in progress</strong>
+                                    </div>
+                                    <div class="timeline-meta">2026-08-04</div>
+                                </div>
+
+                                <div class="timeline-item pending">
+                                    <div class="timeline-marker">5</div>
+                                    <div class="timeline-content">
+                                        <div class="text-small text-muted">Final verification</div>
+                                        <strong>Pending</strong>
+                                    </div>
+                                    <div class="timeline-meta">—</div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <aside class="track-aside">
+                            <article class="glass-card track-detail-card">
+                                <h3>What happens next</h3>
+                                <p class="text-small text-muted">The line team is en route to verify the street light
+                                    issue and complete the repair within 24 hours.</p>
+                                <ul class="detail-bullet-list">
+                                    <li>Inspection confirmed by municipal team</li>
+                                    <li>Replacement parts scheduled</li>
+                                    <li>Verification after repair</li>
+                                </ul>
+                            </article>
+
+                            <article class="glass-card track-detail-card">
+                                <h3>Contact support</h3>
+                                <p class="text-small text-muted">If you need help, please use your portal dashboard to
+                                    open a new request or contact the municipal helpdesk directly.</p>
+                            </article>
+                        </aside>
+                    </section>
+                </div>
+            </main>
+            <footer class="footer"></footer>
+        </div>
+    </div>
+    <script src="../../static/js/main.js"></script>
+    <script src="../../static/js/user.js"></script>
+</body>
+
+</html>
