@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Profile - AI Grievance Portal</title>
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" href="../../static/css/user.css">
+</head>
+
+<body>
+    <div class="sidebar-layout">
+        <aside class="sidebar" aria-label="Sidebar navigation">
+            <button class="button sidebar-back" type="button" aria-label="Back to welcome page">&larr;</button>
+            <div class="sidebar-brand">
+                <div class="brand-box">
+                    <div class="brand-icon">AG</div>
+                    <div>
+                        <h2 class="brand-title">Portal Menu</h2>
+                        <div class="brand-sub text-small text-muted">Civic Services</div>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="section-title">CITIZEN PORTAL</div>
+                    <a class="nav-item" href="dashboard.html">
+                        <span class="icon">🏠</span>
+                        <span>Dashboard</span>
+                    </a>
+                    <a class="nav-item" href="complaint_form.html">
+                        <span class="icon">📝</span>
+                        <span>Lodge New Grievance</span>
+                    </a>
+                    <a class="nav-item" href="complaint_history.html">
+                        <span class="icon">📂</span>
+                        <span>Complaint History</span>
+                    </a>
+                    <a class="nav-item" href="track_complaint.html">
+                        <span class="icon">🚦</span>
+                        <span>Track Complaint</span>
+                    </a>
+                    <a class="nav-item active" href="profile.html">
+                        <span class="icon">👤</span>
+                        <span>Profile</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="section-title">ADMIN PORTAL</div>
+                    <a class="nav-item" href="../admin/dashboard.html">
+                        <span class="icon">📊</span>
+                        <span>Admin Dashboard</span>
+                    </a>
+                    <a class="nav-item" href="../admin/complaints.html">
+                        <span class="icon">🧾</span>
+                        <span>All Complaints</span>
+                    </a>
+                    <a class="nav-item" href="../admin/analytics.html">
+                        <span class="icon">📈</span>
+                        <span>Analytics</span>
+                    </a>
+                    <a class="nav-item" href="../admin/departments.html">
+                        <span class="icon">🏛️</span>
+                        <span>Departments</span>
+                    </a>
+                    <a class="nav-item" href="../admin/users.html">
+                        <span class="icon">👥</span>
+                        <span>Citizen Users</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+        <div class="main-content">
+            <header class="navbar" role="banner">
+                <button class="sidebar-toggle" type="button" aria-label="Toggle sidebar" aria-expanded="false">
+                    <span class="toggle-line"></span>
+                    <span class="toggle-line"></span>
+                    <span class="toggle-line"></span>
+                </button>
+
+                <div class="navbar-brand">
+                    <span class="brand-ai">AI</span>
+                    <div class="brand-copy-wrap">
+                        <strong>AI Grievance Portal</strong>
+                        <div class="text-small text-muted">Citizen-friendly grievance lodging</div>
+                    </div>
+                </div>
+
+                <div class="navbar-controls">
+                    <div class="search-input">
+                        <input id="global-search" type="search" placeholder="Search complaints, departments, IDs..."
+                            aria-label="Search complaints">
+                    </div>
+
+                    <div class="language-switcher" aria-label="Language selector">
+                        <button class="language-button" type="button" aria-expanded="false">
+                            <span class="language-label">English</span>
+                            <span class="language-caret">▾</span>
+                        </button>
+                        <div class="language-menu" role="menu" aria-label="Select language">
+                            <button class="language-option is-active" type="button" data-lang="en">English</button>
+                            <button class="language-option" type="button" data-lang="hi">Hindi</button>
+                        </div>
+                    </div>
+
+                    <div class="profile-menu">
+                        <div class="profile-avatar">P</div>
+                        <div class="profile-meta">
+                            <div class="profile-name">Priya Citizen</div>
+                            <div class="text-small text-muted">My Account</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="content-area">
+                <div class="container">
+                    <section class="profile-hero-portfolio glass-card">
+                        <div class="avatar-block">
+                            <div class="avatar-ring">
+                                <div class="avatar">PR</div>
+                                <div class="online-dot" title="Online"></div>
+                            </div>
+                        </div>
+                        <div class="profile-meta-block">
+                            <div class="profile-header-row">
+                                <div>
+                                    <h1>Priya Sharma <span class="text-small text-muted">Citizen</span></h1>
+                                    <div class="text-small text-muted profile-id">Citizen ID: <strong>CIT-2345</strong>
+                                    </div>
+                                    <p class="profile-tagline">A dedicated civic member tracking grievance progress,
+                                        community service quality, and resolution delivery with clean transparency.</p>
+                                    <div class="profile-badges"><span class="badge">Verified Citizen</span><span
+                                            class="badge">Community Advocate</span></div>
+                                </div>
+
+                                <div class="profile-actions">
+                                    <button class="button">Edit Profile</button>
+                                    <button class="btn-ghost">Export Data</button>
+                                </div>
+                            </div>
+
+                            <div class="stat-grid profile-stats">
+                                <div class="stat-card glass-card">
+                                    <div class="stat-value">24</div>
+                                    <div class="stat-label">Total lodged</div>
+                                </div>
+                                <div class="stat-card glass-card">
+                                    <div class="stat-value">8</div>
+                                    <div class="stat-label">Pending</div>
+                                </div>
+                                <div class="stat-card glass-card">
+                                    <div class="stat-value">75%</div>
+                                    <div class="stat-label">Resolution rate</div>
+                                </div>
+                                <div class="stat-card glass-card">
+                                    <div class="stat-value">2023</div>
+                                    <div class="stat-label">Member since</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="settings-grid profile-settings">
+                        <article class="setting-card glass-card">
+                            <h3>Account details</h3>
+                            <div class="setting-list">
+                                <div><span>Email</span><strong>priya@example.com</strong></div>
+                                <div><span>Phone</span><strong>+91-9876543210</strong></div>
+                                <div><span>Address</span><strong>Sector 12, Sample City</strong></div>
+                            </div>
+                        </article>
+
+                        <article class="setting-card glass-card">
+                            <h3>Notifications</h3>
+                            <div class="setting-switches">
+                                <label class="switch"><span>Email updates</span><input type="checkbox" checked><span
+                                        class="slider"></span></label>
+                                <label class="switch"><span>SMS alerts</span><input type="checkbox"><span
+                                        class="slider"></span></label>
+                                <label class="switch"><span>Push notifications</span><input type="checkbox"
+                                        checked><span class="slider"></span></label>
+                            </div>
+                        </article>
+
+                        <article class="setting-card glass-card">
+                            <h3>Security</h3>
+                            <div class="setting-list">
+                                <div><span>Two-factor auth</span><strong>Disabled</strong></div>
+                            </div>
+                            <div class="setting-actions"><button class="btn-ghost">Change password</button></div>
+                        </article>
+
+                        <article class="setting-card glass-card">
+                            <h3>Data & exports</h3>
+                            <p class="text-small text-muted">Download your citizen data and export lodged complaints.
+                            </p>
+                            <div class="setting-actions"><button class="button">Export CSV</button></div>
+                        </article>
+                    </section>
+
+                    <section class="recent-activity glass-card">
+                        <h3>Recent activity</h3>
+                        <ul class="activity-list">
+                            <li><a href="complaint_details.html?id=1024">#CMP-1024</a> - Street light not working ·
+                                <span class="text-small text-muted">2026-08-02</span></li>
+                            <li><a href="complaint_details.html?id=1031">#CMP-1031</a> - Overflowing drain · <span
+                                    class="text-small text-muted">2026-08-04</span></li>
+                        </ul>
+                    </section>
+                </div>
+            </main>
+            <footer class="footer"></footer>
+        </div>
+    </div>
+    <script src="../../static/js/main.js"></script>
+    <script src="../../static/js/user.js"></script>
+</body>
+
+</html>

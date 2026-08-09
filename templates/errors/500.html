@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 - Internal Server Error</title>
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <style>
+        body {
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%);
+            margin: 0;
+            font-family: Inter, system-ui, sans-serif;
+        }
+
+        .error-card {
+            text-align: center;
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 1);
+            border-radius: 1.5rem;
+            padding: 3rem 2rem;
+            box-shadow: 0 30px 80px rgba(15, 23, 42, 0.08);
+            max-width: 520px;
+        }
+
+        .error-card h1 {
+            margin: 0;
+            font-size: 4rem;
+            color: var(--danger);
+        }
+
+        .error-card p {
+            color: var(--text-muted);
+            margin: 1rem 0 1.5rem;
+            line-height: 1.7;
+        }
+
+        .error-card a {
+            display: inline-flex;
+            padding: 0.95rem 1.6rem;
+            border-radius: 999px;
+            background: var(--primary);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-card">
+        <h1>500</h1>
+        <p>Oops! Something went wrong on our end. Please try again or return to the home page.</p>
+        <a href="../user/dashboard.html">Retry Home</a>
+    </div>
+    <script src="../../static/js/main.js"></script>
+</body>
+
+</html>
