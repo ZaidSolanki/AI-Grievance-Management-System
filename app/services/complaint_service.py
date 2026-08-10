@@ -31,11 +31,12 @@ class ComplaintService:
                 priority,
                 department_id,
                 status,
+                severity,
                 location,
                 latitude,
                 longitude
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 complaint.user_id,
@@ -46,6 +47,7 @@ class ComplaintService:
                 complaint.priority,
                 complaint.department_id,
                 complaint.status,
+                getattr(complaint, 'severity', 'Medium'),
                 complaint.location,
                 complaint.latitude,
                 complaint.longitude

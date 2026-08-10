@@ -131,19 +131,19 @@
                     <section class="history-summary-grid">
                         <article class="summary-card glass-card">
                             <strong>Total complaints</strong>
-                            <span>24</span>
+                            <span>{{ total }}</span>
                         </article>
                         <article class="summary-card glass-card">
                             <strong>Open cases</strong>
-                            <span>8</span>
+                            <span>{{ open_cases }}</span>
                         </article>
                         <article class="summary-card glass-card">
                             <strong>Resolved</strong>
-                            <span>12</span>
+                            <span>{{ resolved }}</span>
                         </article>
                         <article class="summary-card glass-card">
                             <strong>In progress</strong>
-                            <span>4</span>
+                            <span>{{ in_progress }}</span>
                         </article>
                     </section>
 
@@ -162,35 +162,25 @@
                     </section>
 
                     <div class="history-grid">
-                        <article class="history-card glass-card">
-                            <div class="history-card-header">
-                                <div>
-                                    <h3>#CMP-1024 - Street light not working</h3>
-                                    <div class="text-small text-muted">Assigned to Power Grid · 2026-08-02</div>
+                        {% if complaints %}
+                            {% for complaint in complaints %}
+                            <article class="history-card glass-card">
+                                <div class="history-card-header">
+                                    <div>
+                                        <h3>#CMP-{{ complaint.id }} - {{ complaint.title }}</h3>
+                                        <div class="text-small text-muted">Filed on {{ complaint.created_at }}</div>
+                                    </div>
+                                    <div class="history-card-meta">
+                                        <span class="status-chip status-{{ complaint.status|lower|replace(' ', '-') }}">{{ complaint.status }}</span>
+                                        <a class="view-details" href="complaint_details.html?id={{ complaint.id }}">View Details →</a>
+                                    </div>
                                 </div>
-                                <div class="history-card-meta">
-                                    <span class="status-chip status-pending">Pending</span>
-                                    <a class="view-details" href="complaint_details.html?id=1024">View Details →</a>
-                                </div>
-                            </div>
-                            <p class="history-card-note">The junction at Rose Street remains dark after several reports.
-                                Residents are requesting faster maintenance scheduling.</p>
-                        </article>
-
-                        <article class="history-card glass-card">
-                            <div class="history-card-header">
-                                <div>
-                                    <h3>#CMP-1031 - Overflowing drain at bus stop</h3>
-                                    <div class="text-small text-muted">Assigned to Sanitation · 2026-08-04</div>
-                                </div>
-                                <div class="history-card-meta">
-                                    <span class="status-chip status-resolved">Resolved</span>
-                                    <a class="view-details" href="complaint_details.html?id=1031">View Details →</a>
-                                </div>
-                            </div>
-                            <p class="history-card-note">The drain blockage was cleared and the bus stop area has been
-                                marked for follow-up cleaning within 48 hours.</p>
-                        </article>
+                                <p class="history-card-note">{{ complaint.description }}</p>
+                            </article>
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-small text-muted">No complaints found. <a href="{{ url_for('user.grievance') }}">Lodge a new grievance</a> to get started.</p>
+                        {% endif %}
                     </div>
                 </div>
             </main>

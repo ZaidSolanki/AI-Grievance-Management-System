@@ -75,6 +75,13 @@ CREATE TABLE IF NOT EXISTS complaints (
             'Resolved'
         )),
 
+    severity TEXT NOT NULL DEFAULT 'Medium'
+        CHECK(severity IN (
+            'Low',
+            'Medium',
+            'High'
+        )),
+
     location TEXT,
 
     latitude REAL,

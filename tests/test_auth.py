@@ -1,6 +1,7 @@
 import pytest
 from app import create_app
 from app.db import drop_all, init_db
+from database.seed import initialize_database
 
 
 @pytest.fixture()
@@ -9,6 +10,7 @@ def client():
     with app.app_context():
         drop_all()
         init_db()
+        initialize_database()
 
     with app.test_client() as client:
         yield client
@@ -22,6 +24,8 @@ def test_user_signup_and_login(client):
             "email": "alice@example.com",
             "password": "secret123",
             "role": "user",
+            "phone": "1234567890",
+            "address": "123 Main St",
         },
     )
     assert signup_response.status_code == 201
@@ -47,6 +51,8 @@ def test_admin_signup_and_login(client):
             "email": "admin1@example.com",
             "password": "adminpass",
             "role": "admin",
+            "phone": "0987654321",
+            "address": "456 Oak Ave",
         },
     )
     assert signup_response.status_code == 201

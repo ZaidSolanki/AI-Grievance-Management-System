@@ -16,7 +16,7 @@
             <button class="button sidebar-back" type="button" aria-label="Back to welcome page">&larr;</button>
             <div class="sidebar-brand">
                 <div class="brand-box">
-                    <div class="brand-icon">GA</div>
+                    <div class="brand-icon">AG</div>
                     <div>
                         <h2 class="brand-title">Portal Menu</h2>
                         <div class="brand-sub text-small">Civic Services</div>
@@ -30,7 +30,7 @@
                     <a class="nav-item" href="dashboard.html"><span class="icon">🏠</span><span>Dashboard</span></a>
                     <a class="nav-item" href="complaint_form.html"><span class="icon">📝</span><span>Lodge New
                             Grievance</span></a>
-                    <a class="nav-item" href="complaint_history.html"><span class="icon">📂</span><span>Complaint
+                    <a class="nav-item" href="{{ url_for('user.complaint_history') }}"><span class="icon">📂</span><span>Complaint
                             History</span></a>
                     <a class="nav-item" href="track_complaint.html"><span class="icon">🚦</span><span>Track
                             Complaint</span></a>
@@ -161,7 +161,7 @@
                                 <h2>Recent grievances</h2>
                                 <p class="text-small text-muted">Latest updates with quick links.</p>
                             </div>
-                            <a href="complaint_history.html" class="button btn-ghost view-all">View all</a>
+                            <a href="{{ url_for('user.complaint_history') }}" class="button btn-ghost view-all">View all</a>
                         </div>
 
                         <ul class="recent-list">

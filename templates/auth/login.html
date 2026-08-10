@@ -23,12 +23,12 @@
                 <div style="margin-top:0.8rem;">
                     <div class="role-toggle" role="tablist" aria-label="Choose sign-in role" data-role="citizen">
                         <div class="slider" aria-hidden="true"></div>
-                        <button type="button" class="toggle-item active" data-role="citizen">Citizen</button>
+                        <button type="button" class="toggle-item active" data-role="user">User</button>
                         <button type="button" class="toggle-item" data-role="admin">Admin</button>
                     </div>
                 </div>
 
-                <form class="auth-form" action="../base.html" method="get">
+                <form class="auth-form" id="login-form" action="/auth/login" method="post" novalidate>
                     <div class="form-field">
                         <div class="input-icon" aria-hidden="true">
                             <!-- Mail icon -->
@@ -38,8 +38,9 @@
                                 <path d="M21 8v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"></path>
                             </svg>
                         </div>
-                        <input id="email" type="email" name="email" placeholder=" " required>
+                        <input id="email" type="email" name="email" placeholder=" " required autocomplete="email" minlength="5" maxlength="120">
                         <label for="email">Email Address</label>
+                        <span class="field-error" id="login-email-error" aria-live="polite"></span>
                     </div>
 
                     <div class="form-field">
@@ -51,9 +52,14 @@
                                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                             </svg>
                         </div>
-                        <input id="password" type="password" name="password" placeholder=" " required>
+                        <input id="password" type="password" name="password" placeholder=" " required autocomplete="current-password" minlength="6" maxlength="128">
                         <label for="password">Password</label>
+                        <span class="field-error" id="login-password-error" aria-live="polite"></span>
                     </div>
+
+                    <div class="form-error" id="login-form-error" role="alert" aria-live="assertive" hidden></div>
+
+                    <input type="hidden" name="role" id="login-role" value="user">
 
                     <div class="auth-actions">
                         <label class="checkbox-group">
