@@ -10,6 +10,19 @@
     --shell-primary: #5b5ce7;
     --shell-primary-2: #4cc9f0;
     --shell-primary-3: #8b5cf6;
+    --bg-1: var(--shell-bg);
+    --bg-2: var(--shell-bg-2);
+    --surface: var(--shell-surface);
+    --surface-strong: var(--shell-surface-strong);
+    --panel: rgba(255, 255, 255, 0.9);
+    --primary: var(--shell-primary);
+    --primary-2: var(--shell-primary-2);
+    --primary-3: var(--shell-primary-3);
+    --text: var(--shell-text);
+    --muted: var(--shell-muted);
+    --muted-2: #7d8ca8;
+    --line: var(--shell-border);
+    --danger: #ef4444;
     --shell-shadow-soft: 0 18px 45px rgba(55, 65, 81, 0.08);
     --shell-shadow-strong: 0 28px 80px rgba(46, 60, 101, 0.12);
 }
