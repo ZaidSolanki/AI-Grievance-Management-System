@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Grievance Portal</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/responsive.css">
+    <link rel="stylesheet" href="../static/css/user.css">
+</head>
+
+<body>
+    <div class="sidebar-layout">
+
+        <aside class="sidebar" aria-label="Sidebar navigation">
+            <button class="button sidebar-back" type="button" aria-label="Back to welcome page">&larr;</button>
+            <div class="sidebar-brand">
+                <div class="brand-box">
+                    <div class="brand-icon">AG</div>
+                    <div>
+                        <h2 class="brand-title">Portal Menu</h2>
+                        <div class="brand-sub text-small text-muted">Civic Services</div>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="section-title">CITIZEN PORTAL</div>
+                    <a class="nav-item active" href="user/dashboard.html">
+                        <span class="icon">🏠</span>
+                        <span>Dashboard</span>
+                    </a>
+                    <a class="nav-item" href="user/complaint_form.html">
+                        <span class="icon">📝</span>
+                        <span>Lodge New Grievance</span>
+                    </a>
+                    <a class="nav-item" href="{{ url_for('user.complaint_history') }}">
+                        <span class="icon">📂</span>
+                        <span>Complaint History</span>
+                    </a>
+                    <a class="nav-item" href="user/track_complaint.html">
+                        <span class="icon">🚦</span>
+                        <span>Track Complaint</span>
+                    </a>
+                    <a class="nav-item" href="user/profile.html">
+                        <span class="icon">👤</span>
+                        <span>Profile</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="section-title">ADMIN PORTAL</div>
+                    <a class="nav-item" href="admin/dashboard.html">
+                        <span class="icon">📊</span>
+                        <span>Admin Dashboard</span>
+                    </a>
+                    <a class="nav-item" href="admin/complaints.html">
+                        <span class="icon">🧾</span>
+                        <span>All Complaints</span>
+                    </a>
+                    <a class="nav-item" href="admin/analytics.html">
+                        <span class="icon">📈</span>
+                        <span>Analytics</span>
+                    </a>
+                    <a class="nav-item" href="admin/departments.html">
+                        <span class="icon">🏛️</span>
+                        <span>Departments</span>
+                    </a>
+                    <a class="nav-item" href="admin/users.html">
+                        <span class="icon">👥</span>
+                        <span>Citizen Users</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            <header class="navbar" role="banner">
+                <button class="sidebar-toggle" type="button" aria-label="Toggle sidebar" aria-expanded="false">
+                    <span class="toggle-line"></span>
+                    <span class="toggle-line"></span>
+                    <span class="toggle-line"></span>
+                </button>
+
+                <div class="navbar-brand">
+                    <span class="brand-ai">AI</span>
+                    <div class="brand-copy-wrap">
+                        <strong>AI Grievance Portal</strong>
+                        <div class="text-small text-muted">Citizen-friendly grievance lodging</div>
+                    </div>
+                </div>
+
+                <div class="navbar-controls">
+                    <div class="search-input">
+                        <input type="search" placeholder="Search grievances, departments, status..."
+                            aria-label="Quick action search">
+                    </div>
+
+                    <div class="language-switcher" aria-label="Language selector">
+                        <button class="language-button" type="button" aria-expanded="false">
+                            <span class="language-label">English</span>
+                            <span class="language-caret">▾</span>
+                        </button>
+                        <div class="language-menu" role="menu" aria-label="Select language">
+                            <button class="language-option is-active" type="button" data-lang="en">English</button>
+                            <button class="language-option" type="button" data-lang="hi">Hindi</button>
+                        </div>
+                    </div>
+
+                    <div class="profile-menu">
+                        <div class="profile-avatar">P</div>
+                        <div class="profile-meta">
+                            <div class="profile-name">Priya Citizen</div>
+                            <div class="text-small text-muted">My Account</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="content-area">
+                <div class="container shell-panel">
+                    <div class="welcome-strip">
+                        <span class="pill-tag">Civic intelligence</span>
+                        <h1>Welcome to AI Grievance Portal</h1>
+                        <p class="lead">Track, manage, and resolve citizen issues with faster routing, transparent
+                            updates, and AI-assisted response workflows.</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card glass-card">
+                            <span class="stat-label">Open issues</span>
+                            <strong>1,284</strong>
+                            <small>Updated in last 24h</small>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <span class="stat-label">Resolved</span>
+                            <strong>96.4%</strong>
+                            <small>Average response quality</small>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <span class="stat-label">Departments</span>
+                            <strong>12</strong>
+                            <small>Connected across city services</small>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="footer">
+                <div>
+                    <div>&copy; 2026 AI Grievance Portal. All rights reserved.</div>
+                    <div class="text-small text-muted">Accessibility support available for all citizens.</div>
+                </div>
+                <div class="text-small text-muted">
+                    Helpline: 1800-123-4567 | Email: support@aigrievance.gov.in
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="../static/js/main.js"></script>
+</body>
+
+</html>

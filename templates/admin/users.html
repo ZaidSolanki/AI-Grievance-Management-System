@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Users â€“ AI Grievance Portal</title>
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" href="../../static/css/responsive.css">
+    <link rel="stylesheet" href="../../static/css/admin.css">
+</head>
+
+<body class="admin-page">
+    <div class="sidebar-layout">
+        <aside class="sidebar" aria-label="Sidebar navigation">
+            <button class="button sidebar-back" type="button" aria-label="Back to welcome page">&larr;</button>
+            <div class="sidebar-brand">
+                <div class="brand-box">
+                    <div class="brand-icon">AG</div>
+                    <div>
+                        <h2 class="brand-title">Portal Menu</h2>
+                        <div class="brand-sub text-small text-muted">Civic Services</div>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="section-title">CITIZEN PORTAL</div>
+                    <a class="nav-item" href="../user/dashboard.html">
+                        <span class="icon">🏠</span>
+                        <span>Dashboard</span>
+                    </a>
+                    <a class="nav-item" href="../user/complaint_form.html">
+                        <span class="icon">📝</span>
+                        <span>Lodge New Grievance</span>
+                    </a>
+                    <a class="nav-item" href="{{ url_for('user.complaint_history') }}">
+                        <span class="icon">📂</span>
+                        <span>Complaint History</span>
+                    </a>
+                    <a class="nav-item" href="../user/track_complaint.html">
+                        <span class="icon">🚦</span>
+                        <span>Track Complaint</span>
+                    </a>
+                    <a class="nav-item" href="../user/profile.html">
+                        <span class="icon">👤</span>
+                        <span>Profile</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="section-title">ADMIN PORTAL</div>
+                    <a class="nav-item" href="dashboard.html">
+                        <span class="icon">📊</span>
+                        <span>Admin Dashboard</span>
+                    </a>
+                    <a class="nav-item" href="complaints.html">
+                        <span class="icon">🧾</span>
+                        <span>All Complaints</span>
+                    </a>
+                    <a class="nav-item" href="analytics.html">
+                        <span class="icon">📈</span>
+                        <span>Analytics</span>
+                    </a>
+                    <a class="nav-item" href="departments.html">
+                        <span class="icon">🏛️</span>
+                        <span>Departments</span>
+                    </a>
+                    <a class="nav-item active" href="users.html" aria-current="page">
+                        <span class="icon">🧑‍🤝‍🧑</span>
+                        <span>Citizen Users</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            <header class="navbar" role="banner">
+                <button class="sidebar-toggle" type="button" aria-label="Toggle sidebar" aria-expanded="false">
+                    <span class="toggle-line"></span>
+                    <span class="toggle-line"></span>
+                    <span class="toggle-line"></span>
+                </button>
+                <div class="navbar-brand">
+                    <span class="brand-ai">AI</span>
+                    <div class="brand-copy-wrap">
+                        <strong>AI Grievance Portal</strong>
+                        <div class="text-small text-muted">Citizen user management</div>
+                    </div>
+                </div>
+                <div class="navbar-controls">
+                    <div class="search-input">
+                        <input type="search" placeholder="Search registered citizens..." aria-label="Search users">
+                    </div>
+                    <div class="language-switcher" aria-label="Language selector">
+                        <button class="language-button" type="button" aria-expanded="false">
+                            <span class="language-label">English</span>
+                            <span class="language-caret">▾</span>
+                        </button>
+                        <div class="language-menu" role="menu" aria-label="Select language">
+                            <button class="language-option is-active" type="button" data-lang="en">English</button>
+                            <button class="language-option" type="button" data-lang="hi">Hindi</button>
+                            <button class="language-option" type="button" data-lang="regional">Regional</button>
+                        </div>
+                    </div>
+                    <div class="profile-menu">
+                        <div class="profile-avatar">M</div>
+                        <div class="profile-meta">
+                            <div>Municipal Admin</div>
+                            <div class="text-small text-muted">Admin Panel</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="content-area">
+                <section class="dashboard-hero glass-card">
+                    <div>
+                        <h1>Registered citizens</h1>
+                        <p class="lead">Manage portal accounts and citizen activity in a premium dashboard layout.</p>
+                    </div>
+                </section>
+
+                <section class="admin-stats">
+                    <div class="small-card">Total users<span>4,320</span></div>
+                    <div class="small-card">Active now<span>612</span></div>
+                    <div class="small-card">New signups<span>142</span></div>
+                    <div class="small-card">Suspended<span>8</span></div>
+                </section>
+
+                <section class="admin-card table-card">
+                    <div class="card-header">
+                        <div>
+                            <h2>Citizen directory</h2>
+                            <p class="text-muted">Active users with complaint summaries and account status.</p>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Location</th>
+                                    <th>Status</th>
+                                    <th>Complaints</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Priya Sharma</td>
+                                    <td>priya.sharma@example.com</td>
+                                    <td>+91 98765 43210</td>
+                                    <td>Prayagraj</td>
+                                    <td><span class="status-pill status-low">Active</span></td>
+                                    <td>24</td>
+                                </tr>
+                                <tr>
+                                    <td>Vikram Patel</td>
+                                    <td>vikram.patel@example.com</td>
+                                    <td>+91 91234 56789</td>
+                                    <td>Prayagraj</td>
+                                    <td><span class="status-pill status-medium">Pending Verification</span></td>
+                                    <td>12</td>
+                                </tr>
+                                <tr>
+                                    <td>Neha Singh</td>
+                                    <td>neha.singh@example.com</td>
+                                    <td>+91 99887 66554</td>
+                                    <td>Prayagraj</td>
+                                    <td><span class="status-pill status-low">Active</span></td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>Rohan Mehta</td>
+                                    <td>rohan.mehta@example.com</td>
+                                    <td>+91 90123 45678</td>
+                                    <td>Prayagraj</td>
+                                    <td><span class="status-pill status-high">Suspended</span></td>
+                                    <td>3</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="footer">
+                <div>
+                    <div>&copy; 2026 AI Grievance Portal. All rights reserved.</div>
+                    <div class="text-small text-muted">Accessibility support available for all citizens.</div>
+                </div>
+                <div class="text-small text-muted">
+                    Helpline: 1800-123-4567 | Email: support@aigrievance.gov.in
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="../../static/js/main.js"></script>
+</body>
+
+</html>
