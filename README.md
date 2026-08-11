@@ -17,7 +17,7 @@ The system uses Artificial Intelligence to analyze submitted complaints, determi
 | **Kavya Sankhala** | Team Member |
 | **Dev Pandadiya**  | Team Member |
 | **Tirth Sangani**  | Team Member |
-
+|**Khushal Parkhiya**| Team Member |
 ### Mentor
 
 **Vasanti Chavda**
