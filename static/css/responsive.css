@@ -68,6 +68,23 @@
         gap: 0.75rem;
     }
 
+    /* Keep the shared navbar compact on phones after removing the duplicate global search. */
+    @media (max-width: 700px) {
+        .navbar {
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+
+        .navbar-controls {
+            width: auto;
+            flex: 0 0 auto;
+        }
+
+        .navbar .profile-menu {
+            width: auto;
+        }
+    }
+
     .navbar-controls {
         flex-direction: column;
         align-items: stretch;

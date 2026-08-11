@@ -33,17 +33,38 @@ document.addEventListener('DOMContentLoaded', function () {
     pwdFields.forEach((pwd) => {
         const wrapper = pwd.closest('.form-field');
         if (!wrapper) return;
-        // create toggle button
+        // create toggle button with open/closed eye icons
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'password-toggle';
-        btn.setAttribute('aria-label', 'Toggle password visibility');
-        btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path><path d="M12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"></path></svg>';
-        btn.addEventListener('click', function () {
+        btn.setAttribute('aria-pressed', 'false');
+        // accessible label will be updated on toggle
+        btn.setAttribute('aria-label', 'Show password');
+
+        const eyeOpen = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+        // fuller eye-off (eye with a clear diagonal slash) to avoid clipping or odd shapes
+        const eyeClosed = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12s4.5-7 9.5-7 9.5 7 9.5 7-4.5 7-9.5 7S2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/><path d="M1.5 1.5l21 21"/></svg>';
+
+        // start with 'hidden' state (password) -> show eye-closed icon
+        btn.innerHTML = eyeClosed;
+
+        btn.addEventListener('click', function (ev) {
+            ev.preventDefault();
             const isPwd = pwd.getAttribute('type') === 'password';
+            // toggle field type
             pwd.setAttribute('type', isPwd ? 'text' : 'password');
-            // toggle visual active state
-            btn.classList.toggle('is-visible', isPwd);
+            // update icon and accessible attributes
+            if (isPwd) {
+                btn.innerHTML = eyeOpen;
+                btn.classList.add('is-visible');
+                btn.setAttribute('aria-pressed', 'true');
+                btn.setAttribute('aria-label', 'Hide password');
+            } else {
+                btn.innerHTML = eyeClosed;
+                btn.classList.remove('is-visible');
+                btn.setAttribute('aria-pressed', 'false');
+                btn.setAttribute('aria-label', 'Show password');
+            }
             // keep focus on the field
             pwd.focus();
         });
@@ -85,15 +106,25 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             // If form would submit normally, prefer JS navigation to ensure consistent behavior across hosts
             const target = form.getAttribute('action') || '../base.html';
-            // small timeout to allow any form handlers to run
+            // small timeout to allow any form handlers to run and to support file:// previews
             setTimeout(() => {
-                // Resolve relative paths reliably, then navigate
                 try {
-                    const resolved = new URL(target, window.location.href).href;
-                    window.location.assign(resolved);
+                    if (window.location.protocol === 'file:') {
+                        // use a relative path that works within local file previews
+                        window.location.href = target.replace(/^\//, '').replace(/^(?:\.\/?)+/, '');
+                    } else {
+                        // prefer absolute site path when hosted
+                        // if the action already starts with /, use it; otherwise resolve against origin
+                        if (target.startsWith('/')) {
+                            window.location.href = target;
+                        } else {
+                            const resolved = new URL(target, window.location.href).href;
+                            window.location.href = resolved;
+                        }
+                    }
                 } catch (err) {
-                    // fallback if URL resolution fails
-                    window.location.assign(target);
+                    // fallback to simple navigation
+                    window.location.href = target;
                 }
             }, 10);
             // Prevent the normal form submit to avoid duplicates

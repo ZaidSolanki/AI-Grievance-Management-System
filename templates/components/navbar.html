@@ -1,39 +1,26 @@
 <header class="navbar" role="banner">
-  <div class="nav-left">
-    <button class="button sidebar-toggle" type="button" aria-label="Toggle sidebar">&#9776;</button>
-
+  <div class="navbar-brand">
+    <button class="button sidebar-toggle" type="button" aria-label="Toggle sidebar">☰</button>
     <a href="#" class="brand ai-brand" aria-label="AI Grievance Portal">
       <span class="brand-ai">AI</span>
-      <div class="brand-copy">
+      <div class="brand-copy-wrap">
         <strong>Grievance Portal</strong>
         <div class="text-small text-muted">Citizen-friendly grievance lodging</div>
       </div>
     </a>
-
-    <div class="search-input" role="search">
-      <input type="search" placeholder="Search grievances, departments, status..." aria-label="Quick action search">
-    </div>
   </div>
 
-  <div class="nav-right">
-    <div class="lang-pill">
-      <button class="lang-btn" aria-haspopup="true" aria-expanded="false">EN ▾</button>
-      <div class="lang-list" role="menu" aria-hidden="true">
-        <button role="menuitem" class="lang-item" data-lang="en">English</button>
-        <button role="menuitem" class="lang-item" data-lang="hi">हिन्दी</button>
-        <button role="menuitem" class="lang-item" data-lang="regional">Regional</button>
-      </div>
+  <div class="navbar-controls">
+    <div class="complaint-search-box" role="search">
+      <span class="complaint-search-icon" aria-hidden="true">&#128269;</span>
+      <input type="search" placeholder="Search here" aria-label="Search complaints">
     </div>
 
-    <div class="profile-pill" tabindex="0" aria-label="Profile menu">
-      <div class="avatar-wrap">
-        <div class="avatar">A</div>
-        <div class="status-dot" aria-hidden="true"></div>
-      </div>
+    <a class="profile-menu profile-link" href="/templates/base.html" aria-label="Profile menu">
+      <div class="profile-avatar">A</div>
       <div class="profile-meta">
-        <div class="profile-name">Admin</div>
-        <div class="text-small text-muted">My Account</div>
+        <span class="profile-name">Admin</span>
       </div>
-    </div>
+    </a>
   </div>
 </header>

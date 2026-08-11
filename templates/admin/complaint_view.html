@@ -4,235 +4,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complaint View â€“ AI Grievance Portal</title>
-    <link rel="stylesheet" href="../../static/css/style.css">
-    <link rel="stylesheet" href="../../static/css/responsive.css">
-    <link rel="stylesheet" href="../../static/css/admin.css">
+    <title>Complaint View – AI Grievance Portal</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/responsive.css">
+    <link rel="stylesheet" href="/static/css/admin.css?v=complaint-cards-3">
 </head>
 
-<body class="admin-page">
+<body class="admin-portal complaint-detail-page">
+    <svg aria-hidden="true" style="display:none">
+        <symbol id="icon-home" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5z" />
+        </symbol>
+        <symbol id="icon-form" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M6 2h7l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM13 3.5V8h4.5L13 3.5z" />
+            <path fill="currentColor" d="M11 12h-2v2H7v2h2v2h2v-2h2v-2h-2v-2z" />
+        </symbol>
+        <symbol id="icon-history" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z" />
+            <path fill="currentColor" d="M12 7v6l5 3 1-1-4-2V7z" />
+        </symbol>
+        <symbol id="icon-track" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 2C8 2 5 5 5 9c0 5 7 12 7 12s7-7 7-12c0-4-3-7-7-7z" />
+            <circle fill="currentColor" cx="12" cy="11.5" r="2.5" />
+        </symbol>
+        <symbol id="icon-user" viewBox="0 0 24 24">
+            <circle fill="currentColor" cx="12" cy="8" r="3" />
+            <path fill="currentColor" d="M12 12c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z" />
+        </symbol>
+        <symbol id="icon-admin" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 2l7 4v6c0 5-5 9-7 10-2-1-7-5-7-10V6l7-4z" />
+            <path fill="currentColor" d="M12 7l1.5 3.5L17 11l-3 1.8L12 17l-2-4.2L7 11l3.5-0.5L12 7z" />
+        </symbol>
+        <symbol id="icon-complaints" viewBox="0 0 24 24">
+            <rect fill="currentColor" x="6" y="2" width="12" height="20" rx="1" />
+        </symbol>
+        <symbol id="icon-analytics" viewBox="0 0 24 24">
+            <rect fill="currentColor" x="3" y="10" width="4" height="10" rx="0.5" />
+            <rect fill="currentColor" x="9" y="6" width="4" height="14" rx="0.5" />
+            <rect fill="currentColor" x="15" y="2" width="4" height="18" rx="0.5" />
+        </symbol>
+        <symbol id="icon-dept" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M4 21h16V7l-8-4-8 4v14z" />
+            <rect fill="currentColor" x="10" y="11" width="4" height="4" rx="0.6" />
+        </symbol>
+        <symbol id="icon-users" viewBox="0 0 24 24">
+            <circle fill="currentColor" cx="9" cy="8" r="2" />
+            <circle fill="currentColor" cx="16" cy="7" r="1.8" />
+            <path fill="currentColor" d="M6 14c0-1.8 2.7-3 6-3s6 1.2 6 3v2H6v-2z" />
+        </symbol>
+        <symbol id="icon-bell" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 22a2 2 0 0 0 2-2H10a2 2 0 0 0 2 2z" />
+            <path fill="currentColor" d="M18 16V11a6 6 0 1 0-12 0v5l-2 2h16z" />
+        </symbol>
+        <symbol id="icon-spark" viewBox="0 0 40 12">
+            <polyline fill="none" stroke="currentColor" stroke-width="1.6"
+                points="0,8 6,5 12,6 18,3 24,4 30,2 36,6 40,4" />
+        </symbol>
+    </svg>
     <div class="sidebar-layout">
         <aside class="sidebar" aria-label="Sidebar navigation">
-            <button class="button sidebar-back" type="button" aria-label="Back to welcome page">&larr;</button>
+            <a class="button sidebar-back" href="/templates/welcome.html" aria-label="Back to welcome page">&larr;</a>
             <div class="sidebar-brand">
                 <div class="brand-box">
-                    <div class="brand-icon">GA</div>
+                    <div class="brand-icon">AG</div>
                     <div>
                         <h2 class="brand-title">Portal Menu</h2>
                         <div class="brand-sub text-small text-muted">Civic Services</div>
                     </div>
                 </div>
             </div>
+
             <nav class="sidebar-nav">
                 <div class="nav-section">
                     <div class="section-title">CITIZEN PORTAL</div>
-                    <a class="nav-item" href="../user/dashboard.html">
-                        <span class="icon">🏠</span>
-                        <span>Dashboard</span>
-                    </a>
-                    <a class="nav-item" href="../user/complaint_form.html">
-                        <span class="icon">📝</span>
-                        <span>Lodge New Grievance</span>
-                    </a>
-                    <a class="nav-item" href="../user/complaint_history.html">
-                        <span class="icon">📂</span>
-                        <span>Complaint History</span>
-                    </a>
-                    <a class="nav-item" href="../user/track_complaint.html">
-                        <span class="icon">🚦</span>
-                        <span>Track Complaint</span>
-                    </a>
-                    <a class="nav-item" href="../user/profile.html">
-                        <span class="icon">👤</span>
-                        <span>Profile</span>
-                    </a>
+                    <a class="nav-item" href="/templates/user/dashboard.html"><span class="icon"><svg class="icon-svg">
+                                <use href="#icon-home"></use>
+                            </svg></span><span>Dashboard</span></a>
+                    <a class="nav-item" href="/templates/user/complaint_form.html"><span class="icon"><svg
+                                class="icon-svg">
+                                <use href="#icon-form"></use>
+                            </svg></span><span>Lodge New Grievance</span></a>
+                    <a class="nav-item" href="/templates/user/complaint_history.html"><span class="icon"><svg
+                                class="icon-svg">
+                                <use href="#icon-history"></use>
+                            </svg></span><span>Complaint History</span></a>
+                    <a class="nav-item" href="/templates/user/track_complaint.html"><span class="icon"><svg
+                                class="icon-svg">
+                                <use href="#icon-track"></use>
+                            </svg></span><span>Track Complaint</span></a>
+                    <a class="nav-item" href="/templates/user/profile.html"><span class="icon"><svg class="icon-svg">
+                                <use href="#icon-user"></use>
+                            </svg></span><span>Profile</span></a>
                 </div>
-
                 <div class="nav-section">
                     <div class="section-title">ADMIN PORTAL</div>
-                    <a class="nav-item" href="dashboard.html">
-                        <span class="icon">📊</span>
-                        <span>Admin Dashboard</span>
-                    </a>
-                    <a class="nav-item active" href="complaints.html">
-                        <span class="icon">🧾</span>
-                        <span>All Complaints</span>
-                    </a>
-                    <a class="nav-item" href="analytics.html">
-                        <span class="icon">📈</span>
-                        <span>Analytics</span>
-                    </a>
-                    <a class="nav-item" href="departments.html">
-                        <span class="icon">🏛️</span>
-                        <span>Departments</span>
-                    </a>
-                    <a class="nav-item" href="users.html">
-                        <span class="icon">🧑‍🤝‍🧑</span>
-                        <span>Citizen Users</span>
-                    </a>
+                    <a class="nav-item" href="/templates/admin/dashboard.html"><span class="icon"><svg class="icon-svg">
+                                <use href="#icon-admin"></use>
+                            </svg></span><span>Admin Dashboard</span></a>
+                    <a class="nav-item" href="/templates/admin/complaints.html"><span class="icon"><svg
+                                class="icon-svg">
+                                <use href="#icon-complaints"></use>
+                            </svg></span><span>All Complaints</span></a>
+                    <a class="nav-item" href="/templates/admin/analytics.html"><span class="icon"><svg class="icon-svg">
+                                <use href="#icon-analytics"></use>
+                            </svg></span><span>Analytics</span></a>
+                    <a class="nav-item" href="/templates/admin/departments.html"><span class="icon"><svg
+                                class="icon-svg">
+                                <use href="#icon-dept"></use>
+                            </svg></span><span>Departments</span></a>
+                    <a class="nav-item" href="/templates/admin/users.html"><span class="icon"><svg class="icon-svg">
+                                <use href="#icon-users"></use>
+                            </svg></span><span>Citizen Users</span></a>
                 </div>
             </nav>
         </aside>
 
         <div class="main-content">
             <header class="navbar" role="banner">
-                <button class="sidebar-toggle" type="button" aria-label="Toggle sidebar" aria-expanded="false">
-                    <span class="toggle-line"></span>
-                    <span class="toggle-line"></span>
-                    <span class="toggle-line"></span>
-                </button>
-
                 <div class="navbar-brand">
-                    <span class="brand-ai">AI</span>
-                    <div class="brand-copy-wrap">
-                        <strong>AI Grievance Portal</strong>
-                        <div class="text-small text-muted">Case management and reassignment</div>
-                    </div>
+                    <button class="button sidebar-toggle" type="button" aria-label="Toggle sidebar"
+                        onclick="toggleSidebar(event)"><span class="toggle-inner">
+                            <span class="toggle-line"></span>
+                            <span class="toggle-line"></span>
+                            <span class="toggle-line"></span>
+                            <span class="toggle-circle" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M9 6 L15 12 L9 18" fill="none" stroke="var(--shell-primary-3)"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                        </span></button>
+                    <a href="#" class="brand ai-brand" aria-label="AI Grievance Portal">
+                        <span class="brand-ai">AI</span>
+                        <div class="brand-copy-wrap">
+                            <strong>Grievance Portal</strong>
+                            <div class="text-small text-muted">Universal service dashboard</div>
+                        </div>
+                    </a>
                 </div>
 
                 <div class="navbar-controls">
-                    <div class="search-input">
-                        <input type="search" placeholder="Search by complaint ID, title or department..."
-                            aria-label="Search complaints">
+                    <div class="complaint-search-box" role="search">
+                        <span class="complaint-search-icon" aria-hidden="true">&#128269;</span>
+                        <input type="search" placeholder="Search here" aria-label="Search complaints">
                     </div>
 
-                    <div class="language-switcher" aria-label="Language selector">
-                        <button class="language-button" type="button" aria-expanded="false">
-                            <span class="language-label">English</span>
-                            <span class="language-caret">▾</span>
-                        </button>
-                        <div class="language-menu" role="menu" aria-label="Select language">
-                            <button class="language-option is-active" type="button" data-lang="en">English</button>
-                            <button class="language-option" type="button" data-lang="hi">Hindi</button>
-                        </div>
-                    </div>
-
-                    <div class="profile-menu">
-                        <div class="profile-avatar">M</div>
-                        <div class="profile-meta">
-                            <div>Municipal Admin</div>
-                            <div class="text-small text-muted">Admin Panel</div>
-                        </div>
+                    <div class="nav-utilities">
+                        <!-- Simplified navbar utilities: profile name links to shell, dropdown & notifications removed per user request -->
+                        <a class="profile-menu profile-link" href="/templates/base.html" aria-label="Profile link">
+                            <div class="profile-avatar">A</div>
+                            <div class="profile-meta">
+                                <span class="profile-name">Municipal Admin</span>
+                                <div class="text-small text-muted">Municipal admin</div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </header>
 
             <main class="content-area">
-                <section class="dashboard-hero">
-                    <div>
-                        <h1>Complaint detail view</h1>
-                        <p class="lead">Review the case, update assignments, and track progress with a streamlined
-                            administrative workflow.</p>
-                    </div>
-                </section>
-
-                <section class="admin-grid">
-                    <section class="admin-card detail-panel">
-                        <div class="card-header">
-                            <div>
-                                <h2>Complaint overview</h2>
-                                <p class="text-muted">Review details, update status, and reassign the department if
-                                    needed.</p>
-                            </div>
-                            <a href="complaints.html" class="button button-secondary">Back to list</a>
-                        </div>
-
-                        <div class="detail-grid">
-                            <div>
-                                <div class="detail-field">
-                                    <label>Complaint ID</label>
-                                    <input type="text" value="#CMP-1115" readonly>
-                                </div>
-                                <div class="detail-field">
-                                    <label>Title</label>
-                                    <input type="text" value="Frequent water outage in colony B" readonly>
-                                </div>
-                                <div class="detail-field">
-                                    <label>Department</label>
-                                    <select>
-                                        <option selected>Water Supply</option>
-                                        <option>Roads</option>
-                                        <option>Power Grid</option>
-                                        <option>Sanitation</option>
-                                        <option>General Services</option>
-                                    </select>
-                                </div>
-                                <div class="detail-field">
-                                    <label>Status</label>
-                                    <select>
-                                        <option>Pending</option>
-                                        <option selected>In Progress</option>
-                                        <option>Resolved</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div>
-                                <div class="detail-field">
-                                    <label>Officer note</label>
-                                    <textarea
-                                        class="note-box">Field team has been notified and will inspect the site today.</textarea>
-                                </div>
-                                <div class="detail-field">
-                                    <label>Priority</label>
-                                    <select>
-                                        <option>Low</option>
-                                        <option>Medium</option>
-                                        <option selected>High</option>
-                                        <option>Critical</option>
-                                    </select>
-                                </div>
-                                <div class="detail-field">
-                                    <label>Assigned officer</label>
-                                    <input type="text" value="Inspector Ravi Kumar" readonly>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="status-actions">
-                            <button class="button">Save updates</button>
-                            <button class="button button-secondary">Post comments</button>
+                <div class="container">
+                    <section class="dashboard-hero">
+                        <div>
+                            <h1><span class="complaint-detail-title">Complaint detail view</span></h1>
+                            <p class="lead">Review the case, update assignments, and track progress with a streamlined
+                                administrative workflow.</p>
                         </div>
                     </section>
 
-                    <section class="admin-card summary-panel">
-                        <div class="card-header">
-                            <div>
-                                <h2>Case summary</h2>
-                                <p class="text-muted">Quick glance at priority, type, and progress.</p>
+                    <section class="admin-grid">
+                        <section class="admin-card detail-panel">
+                            <div class="card-header">
+                                <div>
+                                    <h2>Complaint overview</h2>
+                                    <p class="text-muted">Review details, update status, and reassign the department if
+                                        needed.</p>
+                                </div>
+                                <a href="complaints.html" class="button complaint-view-button">Back to list</a>
                             </div>
-                        </div>
-                        <div class="summary-grid">
-                            <div class="summary-card">
-                                <span class="text-muted">Reported</span>
-                                <strong>2026-08-07</strong>
+
+                            <div class="complaint-meta-grid">
+                                <div class="complaint-meta-card complaint-id-card floating-card">
+                                    <span>Complaint ID</span>
+                                    <strong>#CMP-1115</strong>
+                                    <small>Citizen grievance reference</small>
+                                </div>
+                                <div class="complaint-meta-card floating-card">
+                                    <span>Reported</span>
+                                    <strong>07 Aug 2026</strong>
+                                    <small>Submitted through citizen portal</small>
+                                </div>
+                                <div class="complaint-meta-card floating-card">
+                                    <span>Last updated</span>
+                                    <strong>11 Aug 2026</strong>
+                                    <small>Latest workflow activity</small>
+                                </div>
+                                <div class="complaint-meta-card complaint-description floating-card">
+                                    <span>Complaint details</span>
+                                    <strong>Residents in Colony B are experiencing frequent water outages, affecting
+                                        daily household needs and local businesses.</strong>
+                                    <small>Water supply service request</small>
+                                </div>
                             </div>
-                            <div class="summary-card">
-                                <span class="text-muted">Current stage</span>
-                                <strong>Field Visit Scheduled</strong>
+
+                            <div class="detail-grid">
+                                <div>
+                                    <div class="detail-field">
+                                        <label>Title</label>
+                                        <input type="text" value="Frequent water outage in colony B" readonly>
+                                    </div>
+                                    <div class="detail-field">
+                                        <label>Department</label>
+                                        <select id="complaint-department">
+                                            <option selected>Water Supply</option>
+                                            <option>Roads</option>
+                                            <option>Power Grid</option>
+                                            <option>Sanitation</option>
+                                            <option>General Services</option>
+                                        </select>
+                                    </div>
+                                    <div class="detail-field">
+                                        <label>Status</label>
+                                        <select id="complaint-status">
+                                            <option>Pending</option>
+                                            <option selected>In Progress</option>
+                                            <option>Resolved</option>
+                                        </select>
+                                    </div>
+                                    <div class="detail-field">
+                                        <label>Assigned officer</label>
+                                        <select id="complaint-officer">
+                                            <option selected>Inspector Ravi Kumar</option>
+                                            <option>Officer Meena Singh</option>
+                                            <option>Officer Rakesh Gupta</option>
+                                            <option>Officer Sunita Rao</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="detail-field">
+                                        <label>Officer note</label>
+                                        <textarea id="complaint-note"
+                                            class="note-box">Field team has been notified and will inspect the site today.</textarea>
+                                    </div>
+                                    <div class="detail-field">
+                                        <label>Priority</label>
+                                        <select id="complaint-priority">
+                                            <option>Low</option>
+                                            <option>Medium</option>
+                                            <option selected>High</option>
+                                            <option>Critical</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="summary-card">
-                                <span class="text-muted">Response team</span>
-                                <strong>Water Supply Unit</strong>
+
+                            <div class="status-actions">
+                                <button id="save-complaint-updates" class="button" type="button">Save updates</button>
+                                <button id="mark-complaint-resolved" class="button complaint-view-button"
+                                    type="button">Mark as resolved</button>
+                                <span id="save-status" class="save-status" role="status" aria-live="polite"></span>
                             </div>
-                        </div>
+                        </section>
+
+                        <section class="admin-card summary-panel">
+                            <div class="card-header">
+                                <div>
+                                    <h2>Case summary</h2>
+                                    <p class="text-muted">Quick glance at priority, type, and progress.</p>
+                                </div>
+                            </div>
+                            <div class="summary-grid">
+                                <div class="summary-card">
+                                    <span class="summary-icon">!</span>
+                                    <div><span class="text-muted">Priority</span><strong id="summary-priority"
+                                            class="summary-status summary-high">High</strong></div>
+                                </div>
+                                <div class="summary-card">
+                                    <span class="summary-icon">↗</span>
+                                    <div><span class="text-muted">Current stage</span><strong id="summary-stage">Field
+                                            visit scheduled</strong></div>
+                                </div>
+                                <div class="summary-card">
+                                    <span class="summary-icon">W</span>
+                                    <div><span class="text-muted">Response team</span><strong>Water Supply Unit</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="detail-timeline">
+                                <h3>Activity timeline</h3>
+                                <div class="timeline-item"><span></span>
+                                    <div><strong>Field visit scheduled</strong><small>11 Aug 2026 · Water Supply
+                                            Unit</small></div>
+                                </div>
+                                <div class="timeline-item"><span></span>
+                                    <div><strong>Officer assigned</strong><small>08 Aug 2026 · Inspector Ravi
+                                            Kumar</small></div>
+                                </div>
+                                <div class="timeline-item"><span></span>
+                                    <div><strong>Complaint received</strong><small>07 Aug 2026 · Citizen portal</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </section>
-                </section>
+                </div>
             </main>
-
-            <footer class="footer">
-                <div>
-                    <div>&copy; 2026 AI Grievance Portal. All rights reserved.</div>
-                    <div class="text-small text-muted">Accessibility support available for all citizens.</div>
+            <footer class="footer luxury-footer" role="contentinfo">
+                <div class="footer-left">
+                    <div class="status">
+                        <span class="status-dot online" aria-hidden="true"></span>
+                        <span class="status-text">Systems Operational</span>
+                    </div>
+                    <div class="copyright">&copy; 2026 AI Grievance Portal. All rights reserved.</div>
                 </div>
-                <div class="text-small text-muted">
-                    Helpline: 1800-123-4567 | Email: support@aigrievance.gov.in
-                </div>
+                <div class="footer-right text-small text-muted">Accessibility support available • Helpline:
+                    1800-123-4567 • support@aigrievance.gov.in</div>
             </footer>
         </div>
     </div>
-
-    <script src="../../static/js/main.js"></script>
+    <script src="/static/js/main.js" defer></script>
+    <script src="/static/js/admin-detail.js" defer></script>
 </body>
 
 </html>

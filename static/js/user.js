@@ -26,6 +26,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    const historySearch = document.getElementById('complaint-search');
+    const historyCards = Array.from(document.querySelectorAll('[data-history-card]'));
+    const historyFilters = Array.from(document.querySelectorAll('[data-filter]'));
+    const historyResultCount = document.querySelector('.history-result-count');
+    if (historySearch && historyCards.length && historyFilters.length) {
+        const params = new URLSearchParams(window.location.search);
+        const initialStatus = params.get('status');
+        const statusMap = { pending: 'Pending', resolved: 'Resolved', 'in-progress': 'In Progress' };
+        let activeFilter = statusMap[initialStatus] || 'All';
+
+        const renderHistory = () => {
+            const query = historySearch.value.trim().toLowerCase();
+            historyCards.forEach((card) => {
+                const matchesStatus = activeFilter === 'All' || card.dataset.status === activeFilter;
+                const matchesSearch = !query || card.dataset.search.includes(query);
+                card.hidden = !(matchesStatus && matchesSearch);
+            });
+            if (historyResultCount) {
+                const visibleCount = historyCards.filter((card) => !card.hidden).length;
+                historyResultCount.textContent = `${visibleCount} complaint${visibleCount === 1 ? '' : 's'} shown`;
+            }
+            historyFilters.forEach((filter) => {
+                filter.classList.toggle('is-active', filter.dataset.filter === activeFilter);
+            });
+        };
+
+        historyFilters.forEach((filter) => {
+            filter.addEventListener('click', () => {
+                activeFilter = filter.dataset.filter;
+                renderHistory();
+            });
+        });
+        historySearch.addEventListener('input', renderHistory);
+        renderHistory();
+    }
+
     // Timeline progress fill for Track Complaint page
     const timeline = document.getElementById('complaint-timeline');
     if (timeline) {

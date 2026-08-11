@@ -4,16 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Departments â€“ AI Grievance Portal</title>
-    <link rel="stylesheet" href="../../static/css/style.css">
-    <link rel="stylesheet" href="../../static/css/responsive.css">
-    <link rel="stylesheet" href="../../static/css/admin.css">
+    <title>Departments – AI Grievance Portal</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/responsive.css">
+    <link rel="stylesheet" href="/static/css/admin.css">
 </head>
 
-<body class="admin-page">
+<body class="admin-portal departments-page">
+    <svg aria-hidden="true" style="display:none">
+        <symbol id="icon-home" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5z" />
+        </symbol>
+        <symbol id="icon-form" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M6 2h7l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM13 3.5V8h4.5L13 3.5z" />
+            <path fill="currentColor" d="M11 12h-2v2H7v2h2v2h2v-2h2v-2h-2v-2z" />
+        </symbol>
+        <symbol id="icon-history" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z" />
+            <path fill="currentColor" d="M12 7v6l5 3 1-1-4-2V7z" />
+        </symbol>
+        <symbol id="icon-track" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 2C8 2 5 5 5 9c0 5 7 12 7 12s7-7 7-12c0-4-3-7-7-7z" />
+            <circle fill="currentColor" cx="12" cy="11.5" r="2.5" />
+        </symbol>
+        <symbol id="icon-user" viewBox="0 0 24 24">
+            <circle fill="currentColor" cx="12" cy="8" r="3" />
+            <path fill="currentColor" d="M12 12c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z" />
+        </symbol>
+        <symbol id="icon-admin" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 2l7 4v6c0 5-5 9-7 10-2-1-7-5-7-10V6l7-4z" />
+            <path fill="currentColor" d="M12 7l1.5 3.5L17 11l-3 1.8L12 17l-2-4.2L7 11l3.5-0.5L12 7z" />
+        </symbol>
+        <symbol id="icon-complaints" viewBox="0 0 24 24">
+            <rect fill="currentColor" x="6" y="2" width="12" height="20" rx="1" />
+        </symbol>
+        <symbol id="icon-analytics" viewBox="0 0 24 24">
+            <rect fill="currentColor" x="3" y="10" width="4" height="10" rx="0.5" />
+            <rect fill="currentColor" x="9" y="6" width="4" height="14" rx="0.5" />
+            <rect fill="currentColor" x="15" y="2" width="4" height="18" rx="0.5" />
+        </symbol>
+        <symbol id="icon-dept" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M4 21h16V7l-8-4-8 4v14z" />
+            <rect fill="currentColor" x="10" y="11" width="4" height="4" rx="0.6" />
+        </symbol>
+        <symbol id="icon-users" viewBox="0 0 24 24">
+            <circle fill="currentColor" cx="9" cy="8" r="2" />
+            <circle fill="currentColor" cx="16" cy="7" r="1.8" />
+            <path fill="currentColor" d="M6 14c0-1.8 2.7-3 6-3s6 1.2 6 3v2H6v-2z" />
+        </symbol>
+        <symbol id="icon-bell" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 22a2 2 0 0 0 2-2H10a2 2 0 0 0 2 2z" />
+            <path fill="currentColor" d="M18 16V11a6 6 0 1 0-12 0v5l-2 2h16z" />
+        </symbol>
+        <symbol id="icon-spark" viewBox="0 0 40 12">
+            <polyline fill="none" stroke="currentColor" stroke-width="1.6"
+                points="0,8 6,5 12,6 18,3 24,4 30,2 36,6 40,4" />
+        </symbol>
+    </svg>
     <div class="sidebar-layout">
         <aside class="sidebar" aria-label="Sidebar navigation">
-            <button class="button sidebar-back" type="button" aria-label="Back to welcome page">&larr;</button>
+            <a class="button sidebar-back" href="/templates/welcome.html" aria-label="Back to welcome page">&larr;</a>
             <div class="sidebar-brand">
                 <div class="brand-box">
                     <div class="brand-icon">AG</div>
@@ -23,184 +74,224 @@
                     </div>
                 </div>
             </div>
+
             <nav class="sidebar-nav">
                 <div class="nav-section">
                     <div class="section-title">CITIZEN PORTAL</div>
-                    <a class="nav-item" href="../user/dashboard.html">
-                        <span class="icon">🏠</span>
-                        <span>Dashboard</span>
-                    </a>
-                    <a class="nav-item" href="../user/complaint_form.html">
-                        <span class="icon">📝</span>
-                        <span>Lodge New Grievance</span>
-                    </a>
-                    <a class="nav-item" href="../user/complaint_history.html">
-                        <span class="icon">📂</span>
-                        <span>Complaint History</span>
-                    </a>
-                    <a class="nav-item" href="../user/track_complaint.html">
-                        <span class="icon">🚦</span>
-                        <span>Track Complaint</span>
-                    </a>
-                    <a class="nav-item" href="../user/profile.html">
-                        <span class="icon">👤</span>
-                        <span>Profile</span>
-                    </a>
+                    <a class="nav-item" href="/templates/user/dashboard.html"><span class="icon"><svg class="icon-svg">
+                                <use href="#icon-home"></use>
+                            </svg></span><span>Dashboard</span></a>
+                    <a class="nav-item" href="/templates/user/complaint_form.html"><span class="icon"><svg
+                                class="icon-svg">
+                                <use href="#icon-form"></use>
+                            </svg></span><span>Lodge New Grievance</span></a>
+                    <a class="nav-item" href="/templates/user/complaint_history.html"><span class="icon"><svg
+                                class="icon-svg">
+                                <use href="#icon-history"></use>
+                            </svg></span><span>Complaint History</span></a>
+                    <a class="nav-item" href="/templates/user/track_complaint.html"><span class="icon"><svg
+                                class="icon-svg">
+                                <use href="#icon-track"></use>
+                            </svg></span><span>Track Complaint</span></a>
+                    <a class="nav-item" href="/templates/user/profile.html"><span class="icon"><svg class="icon-svg">
+                                <use href="#icon-user"></use>
+                            </svg></span><span>Profile</span></a>
                 </div>
-
                 <div class="nav-section">
                     <div class="section-title">ADMIN PORTAL</div>
-                    <a class="nav-item" href="dashboard.html">
-                        <span class="icon">📊</span>
-                        <span>Admin Dashboard</span>
-                    </a>
-                    <a class="nav-item" href="complaints.html">
-                        <span class="icon">🧾</span>
-                        <span>All Complaints</span>
-                    </a>
-                    <a class="nav-item" href="analytics.html">
-                        <span class="icon">📈</span>
-                        <span>Analytics</span>
-                    </a>
-                    <a class="nav-item active" href="departments.html" aria-current="page">
-                        <span class="icon">🏛️</span>
-                        <span>Departments</span>
-                    </a>
-                    <a class="nav-item" href="users.html">
-                        <span class="icon">🧑‍🤝‍🧑</span>
-                        <span>Citizen Users</span>
-                    </a>
+                    <a class="nav-item" href="/templates/admin/dashboard.html"><span class="icon"><svg class="icon-svg">
+                                <use href="#icon-admin"></use>
+                            </svg></span><span>Admin Dashboard</span></a>
+                    <a class="nav-item" href="/templates/admin/complaints.html"><span class="icon"><svg
+                                class="icon-svg">
+                                <use href="#icon-complaints"></use>
+                            </svg></span><span>All Complaints</span></a>
+                    <a class="nav-item" href="/templates/admin/analytics.html"><span class="icon"><svg class="icon-svg">
+                                <use href="#icon-analytics"></use>
+                            </svg></span><span>Analytics</span></a>
+                    <a class="nav-item" href="/templates/admin/departments.html"><span class="icon"><svg
+                                class="icon-svg">
+                                <use href="#icon-dept"></use>
+                            </svg></span><span>Departments</span></a>
+                    <a class="nav-item" href="/templates/admin/users.html"><span class="icon"><svg class="icon-svg">
+                                <use href="#icon-users"></use>
+                            </svg></span><span>Citizen Users</span></a>
                 </div>
             </nav>
         </aside>
 
         <div class="main-content">
             <header class="navbar" role="banner">
-                <button class="sidebar-toggle" type="button" aria-label="Toggle sidebar" aria-expanded="false">
-                    <span class="toggle-line"></span>
-                    <span class="toggle-line"></span>
-                    <span class="toggle-line"></span>
-                </button>
                 <div class="navbar-brand">
-                    <span class="brand-ai">AI</span>
-                    <div class="brand-copy-wrap">
-                        <strong>AI Grievance Portal</strong>
-                        <div class="text-small text-muted">Department operations and workload</div>
-                    </div>
+                    <button class="button sidebar-toggle" type="button" aria-label="Toggle sidebar"
+                        onclick="toggleSidebar(event)"><span class="toggle-inner">
+                            <span class="toggle-line"></span>
+                            <span class="toggle-line"></span>
+                            <span class="toggle-line"></span>
+                            <span class="toggle-circle" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M9 6 L15 12 L9 18" fill="none" stroke="var(--shell-primary-3)"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                        </span></button>
+                    <a href="#" class="brand ai-brand" aria-label="AI Grievance Portal">
+                        <span class="brand-ai">AI</span>
+                        <div class="brand-copy-wrap">
+                            <strong>Grievance Portal</strong>
+                            <div class="text-small text-muted">Universal service dashboard</div>
+                        </div>
+                    </a>
                 </div>
+
                 <div class="navbar-controls">
-                    <div class="search-input">
-                        <input type="search" placeholder="Search departments..." aria-label="Search departments">
+                    <div class="complaint-search-box" role="search">
+                        <span class="complaint-search-icon" aria-hidden="true">&#128269;</span>
+                        <input type="search" placeholder="Search here" aria-label="Search complaints">
                     </div>
-                    <div class="language-switcher" aria-label="Language selector">
-                        <button class="language-button" type="button" aria-expanded="false">
-                            <span class="language-label">English</span>
-                            <span class="language-caret">▾</span>
-                        </button>
-                        <div class="language-menu" role="menu" aria-label="Select language">
-                            <button class="language-option is-active" type="button" data-lang="en">English</button>
-                            <button class="language-option" type="button" data-lang="hi">Hindi</button>
-                            <button class="language-option" type="button" data-lang="regional">Regional</button>
-                        </div>
-                    </div>
-                    <div class="profile-menu">
-                        <div class="profile-avatar">M</div>
-                        <div class="profile-meta">
-                            <div>Municipal Admin</div>
-                            <div class="text-small text-muted">Admin Panel</div>
-                        </div>
+
+                    <div class="nav-utilities">
+                        <!-- Simplified navbar utilities: profile name links to shell, dropdown & notifications removed per user request -->
+                        <a class="profile-menu profile-link" href="/templates/base.html" aria-label="Profile link">
+                            <div class="profile-avatar">A</div>
+                            <div class="profile-meta">
+                                <span class="profile-name">Municipal Admin</span>
+                                <div class="text-small text-muted">Municipal admin</div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </header>
 
             <main class="content-area">
-                <section class="dashboard-hero glass-card">
-                    <div>
-                        <h1>Departments directory</h1>
-                        <p class="lead">View department leads, active workloads, and pending complaint counts through a
-                            clean operational dashboard.</p>
-                    </div>
-                </section>
-
-                <section class="admin-stats">
-                    <div class="small-card">Live departments<span>12</span></div>
-                    <div class="small-card">Open tickets<span>240</span></div>
-                    <div class="small-card">High-priority<span>28</span></div>
-                    <div class="small-card">Awaiting action<span>92</span></div>
-                </section>
-
-                <section class="admin-grid">
-                    <section class="department-card">
-                        <h2>Roads</h2>
-                        <div class="feed-list">
-                            <div class="department-item">
-                                <strong>Head Officer: Anil Verma</strong>
-                                <span>Pending cases: 14</span>
-                            </div>
-                            <div class="department-item">
-                                <strong>Current focus area:</strong>
-                                <span>Pothole repairs and street lighting</span>
-                            </div>
+                <div class="container">
+                    <section class="dashboard-hero glass-card">
+                        <div>
+                            <h1><span class="departments-title-text">Departments directory</span></h1>
+                            <p class="lead">View department leads, active workloads, and pending complaint counts
+                                through a clean operational dashboard.</p>
                         </div>
                     </section>
 
-                    <section class="department-card">
-                        <h2>Sanitation</h2>
-                        <div class="feed-list">
-                            <div class="department-item">
-                                <strong>Head Officer: Meena Singh</strong>
-                                <span>Pending cases: 18</span>
+                    <section class="admin-stats departments-stats">
+                        <div class="small-card"><span>Live departments</span><strong>12</strong></div>
+                        <div class="small-card"><span>Open tickets</span><strong>240</strong></div>
+                        <div class="small-card"><span>High-priority</span><strong>28</strong></div>
+                        <div class="small-card"><span>Awaiting action</span><strong>92</strong></div>
+                    </section>
+
+                    <section class="admin-card departments-filter-panel" aria-label="Department filters">
+                        <div class="card-header">
+                            <div>
+                                <h2><span class="departments-section-pill">Department workload</span></h2>
+                                <p class="text-muted">Find teams quickly and prioritize departments that need attention.
+                                </p>
                             </div>
-                            <div class="department-item">
-                                <strong>Current focus area:</strong>
-                                <span>Drain clearing and waste collection</span>
+                        </div>
+                        <div class="departments-filters">
+                            <div class="departments-search">
+                                <span aria-hidden="true">&#128269;</span>
+                                <input id="department-search" type="search" placeholder="Search department or officer"
+                                    aria-label="Search departments">
                             </div>
+                            <select id="department-workload" aria-label="Filter by workload">
+                                <option>All Workloads</option>
+                                <option>High Workload</option>
+                                <option>Medium Workload</option>
+                                <option>Low Workload</option>
+                            </select>
+                            <select id="department-sort" aria-label="Sort departments">
+                                <option value="pending-desc">Most pending cases</option>
+                                <option value="pending-asc">Fewest pending cases</option>
+                                <option value="name-asc">Department name</option>
+                            </select>
                         </div>
                     </section>
 
-                    <section class="department-card">
-                        <h2>Water Supply</h2>
-                        <div class="feed-list">
-                            <div class="department-item">
-                                <strong>Head Officer: Rakesh Gupta</strong>
-                                <span>Pending cases: 16</span>
+                    <section class="departments-grid" id="departments-grid">
+                        <section class="department-card" data-department data-name="Roads" data-officer="Anil Verma"
+                            data-workload="High" data-pending="14">
+                            <div class="department-card-header">
+                                <div>
+                                    <span class="department-eyebrow">Civic operations</span>
+                                    <h2>Roads</h2>
+                                </div>
+                                <span class="workload-pill workload-high">High workload</span>
                             </div>
-                            <div class="department-item">
-                                <strong>Current focus area:</strong>
-                                <span>Leak repairs and service restoration</span>
-                            </div>
-                        </div>
-                    </section>
+                            <div class="department-metrics"><strong>14</strong><span>pending
+                                    cases</span><strong>32</strong><span>resolved this month</span></div>
+                            <div class="department-progress"><span style="width: 68%"></span></div>
+                            <p class="department-officer">Head Officer: <strong>Anil Verma</strong></p>
+                            <span class="department-focus">Pothole repairs and street lighting</span>
+                            <a class="complaint-view-button button department-action" href="complaints.html">View
+                                complaints</a>
+                        </section>
 
-                    <section class="department-card">
-                        <h2>Power Grid</h2>
-                        <div class="feed-list">
-                            <div class="department-item">
-                                <strong>Head Officer: Sunita Rao</strong>
-                                <span>Pending cases: 12</span>
+                        <section class="department-card" data-department data-name="Sanitation"
+                            data-officer="Meena Singh" data-workload="High" data-pending="18">
+                            <div class="department-card-header">
+                                <div><span class="department-eyebrow">Civic operations</span>
+                                    <h2>Sanitation</h2>
+                                </div><span class="workload-pill workload-high">High workload</span>
                             </div>
-                            <div class="department-item">
-                                <strong>Current focus area:</strong>
-                                <span>Streetlight maintenance and outage response</span>
+                            <div class="department-metrics"><strong>18</strong><span>pending
+                                    cases</span><strong>38</strong><span>resolved this month</span></div>
+                            <div class="department-progress"><span style="width: 76%"></span></div>
+                            <p class="department-officer">Head Officer: <strong>Meena Singh</strong></p>
+                            <span class="department-focus">Drain clearing and waste collection</span>
+                            <a class="complaint-view-button button department-action" href="complaints.html">View
+                                complaints</a>
+                        </section>
+
+                        <section class="department-card" data-department data-name="Water Supply"
+                            data-officer="Rakesh Gupta" data-workload="Medium" data-pending="16">
+                            <div class="department-card-header">
+                                <div><span class="department-eyebrow">Civic operations</span>
+                                    <h2>Water Supply</h2>
+                                </div><span class="workload-pill workload-medium">Medium workload</span>
                             </div>
-                        </div>
+                            <div class="department-metrics"><strong>16</strong><span>pending
+                                    cases</span><strong>29</strong><span>resolved this month</span></div>
+                            <div class="department-progress"><span style="width: 58%"></span></div>
+                            <p class="department-officer">Head Officer: <strong>Rakesh Gupta</strong></p>
+                            <span class="department-focus">Leak repairs and service restoration</span>
+                            <a class="complaint-view-button button department-action" href="complaints.html">View
+                                complaints</a>
+                        </section>
+
+                        <section class="department-card" data-department data-name="Power Grid"
+                            data-officer="Sunita Rao" data-workload="Low" data-pending="12">
+                            <div class="department-card-header">
+                                <div><span class="department-eyebrow">Civic operations</span>
+                                    <h2>Power Grid</h2>
+                                </div><span class="workload-pill workload-low">Low workload</span>
+                            </div>
+                            <div class="department-metrics"><strong>12</strong><span>pending
+                                    cases</span><strong>35</strong><span>resolved this month</span></div>
+                            <div class="department-progress"><span style="width: 44%"></span></div>
+                            <p class="department-officer">Head Officer: <strong>Sunita Rao</strong></p>
+                            <span class="department-focus">Streetlight maintenance and outage response</span>
+                            <a class="complaint-view-button button department-action" href="complaints.html">View
+                                complaints</a>
+                        </section>
                     </section>
-                </section>
+                </div>
             </main>
-
-            <footer class="footer">
-                <div>
-                    <div>&copy; 2026 AI Grievance Portal. All rights reserved.</div>
-                    <div class="text-small text-muted">Accessibility support available for all citizens.</div>
+            <footer class="footer luxury-footer" role="contentinfo">
+                <div class="footer-left">
+                    <div class="status">
+                        <span class="status-dot online" aria-hidden="true"></span>
+                        <span class="status-text">Systems Operational</span>
+                    </div>
+                    <div class="copyright">&copy; 2026 AI Grievance Portal. All rights reserved.</div>
                 </div>
-                <div class="text-small text-muted">
-                    Helpline: 1800-123-4567 | Email: support@aigrievance.gov.in
-                </div>
+                <div class="footer-right text-small text-muted">Accessibility support available • Helpline:
+                    1800-123-4567 • support@aigrievance.gov.in</div>
             </footer>
         </div>
     </div>
-
-    <script src="../../static/js/main.js"></script>
+    <script src="/static/js/main.js" defer></script>
+    <script src="/static/js/departments.js"></script>
 </body>
 
 </html>

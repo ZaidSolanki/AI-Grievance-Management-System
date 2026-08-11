@@ -1,73 +1,189 @@
-document.addEventListener('DOMContentLoaded', function () {
+function handleSidebarToggle(event) {
     const sidebarLayout = document.querySelector('.sidebar-layout');
     const sidebar = document.querySelector('.sidebar');
-    // robust toggle selector: target .sidebar-toggle or icon-btn variants
-    const toggle = document.querySelector('.sidebar-toggle') || document.querySelector('.icon-btn.sidebar-toggle') || document.querySelector('.icon-btn');
+    const toggle = document.querySelector('.sidebar-toggle');
+
+    if (!sidebarLayout || !sidebar || !toggle) return;
+
+    const isMobile = window.innerWidth <= 992;
+    const desiredOpen = isMobile ? !sidebar.classList.contains('open') : sidebarLayout.classList.contains('sidebar-collapsed');
+
+    if (event && typeof event.preventDefault === 'function') {
+        event.preventDefault();
+    }
+
+    if (isMobile) {
+        const open = sidebar.classList.toggle('open', desiredOpen);
+        toggle.classList.toggle('active', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        sidebar.setAttribute('aria-hidden', String(!open));
+        return;
+    }
+
+    const isCollapsed = sidebarLayout.classList.toggle('sidebar-collapsed', !desiredOpen);
+    const nowOpen = !isCollapsed;
+    toggle.classList.remove('active');
+    toggle.classList.remove('moved');
+    toggle.setAttribute('aria-expanded', String(nowOpen));
+    sidebar.setAttribute('aria-hidden', String(!nowOpen));
+
+    const inner = toggle.querySelector('.toggle-inner');
+    if (inner) {
+        inner.classList.remove('rotating-cw', 'rotating-ccw');
+        void inner.offsetWidth;
+        inner.classList.add(isCollapsed ? 'rotating-cw' : 'rotating-ccw');
+        const cleanup = function () {
+            inner.classList.remove('rotating-cw', 'rotating-ccw');
+            inner.removeEventListener('animationend', cleanup);
+        };
+        inner.addEventListener('animationend', cleanup);
+    }
+
+    sidebar.style.transition = nowOpen ? 'transform 0.35s cubic-bezier(.2,.9,.2,1), opacity 0.35s ease' : 'transform 1.1s cubic-bezier(.2,.9,.2,1), opacity 1.1s ease';
+    const onTransEnd = function (ev) {
+        if (ev && ev.target === sidebar && (ev.propertyName === 'transform' || ev.propertyName === 'opacity')) {
+            sidebar.style.transition = '';
+            sidebar.removeEventListener('transitionend', onTransEnd);
+        }
+    };
+    sidebar.addEventListener('transitionend', onTransEnd);
+};
+
+window.toggleSidebar = handleSidebarToggle;
+
+function ensureSharedIcons() {
+    if (document.querySelector('#shell-icons')) return;
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('id', 'shell-icons');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.style.display = 'none';
+    svg.innerHTML = `
+    <symbol id="icon-home" viewBox="0 0 24 24"><path fill="currentColor" d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5z"/></symbol>
+    <symbol id="icon-form" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M6 2h7l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM13 3.5V8h4.5L13 3.5z" />
+      <path fill="currentColor" d="M11 12h-2v2H7v2h2v2h2v-2h2v-2h-2v-2z" />
+    </symbol>
+    <symbol id="icon-history" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path fill="currentColor" d="M12 7v6l5 3 1-1-4-2V7z"/></symbol>
+    <symbol id="icon-track" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C8 2 5 5 5 9c0 5 7 12 7 12s7-7 7-12c0-4-3-7-7-7z"/><circle fill="currentColor" cx="12" cy="11.5" r="2.5"/></symbol>
+    <symbol id="icon-user" viewBox="0 0 24 24"><circle fill="currentColor" cx="12" cy="8" r="3"/><path fill="currentColor" d="M12 12c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z"/></symbol>
+    <symbol id="icon-admin" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l7 4v6c0 5-5 9-7 10-2-1-7-5-7-10V6l7-4z"/><path fill="currentColor" d="M12 7l1.5 3.5L17 11l-3 1.8L12 17l-2-4.2L7 11l3.5-0.5L12 7z"/></symbol>
+    <symbol id="icon-complaints" viewBox="0 0 24 24"><rect fill="currentColor" x="6" y="2" width="12" height="20" rx="1"/></symbol>
+    <symbol id="icon-analytics" viewBox="0 0 24 24"><rect fill="currentColor" x="3" y="10" width="4" height="10" rx="0.5"/><rect fill="currentColor" x="9" y="6" width="4" height="14" rx="0.5"/><rect fill="currentColor" x="15" y="2" width="4" height="18" rx="0.5"/></symbol>
+    <symbol id="icon-dept" viewBox="0 0 24 24"><path fill="currentColor" d="M4 21h16V7l-8-4-8 4v14z"/><rect fill="currentColor" x="10" y="11" width="4" height="4" rx="0.6"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24"><circle fill="currentColor" cx="9" cy="8" r="2"/><circle fill="currentColor" cx="16" cy="7" r="1.8"/><path fill="currentColor" d="M6 14c0-1.8 2.7-3 6-3s6 1.2 6 3v2H6v-2z"/></symbol>
+    <symbol id="icon-bell" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22a2 2 0 0 0 2-2H10a2 2 0 0 0 2 2z"/><path fill="currentColor" d="M18 16V11a6 6 0 1 0-12 0v5l-2 2h16z"/></symbol>
+    <symbol id="icon-spark" viewBox="0 0 40 12"><polyline fill="none" stroke="currentColor" stroke-width="1.6" points="0,8 6,5 12,6 18,3 24,4 30,2 36,6 40,4"/></symbol>
+  `;
+    document.body.insertBefore(svg, document.body.firstChild);
+}
+
+function ensureSharedSidebarToggle(toggle) {
+    if (!toggle || toggle.dataset.shellNormalized === 'true') return;
+
+    if (!toggle.classList.contains('button')) {
+        toggle.classList.add('button');
+    }
+
+    let inner = toggle.querySelector('.toggle-inner');
+    if (!inner) {
+        inner = document.createElement('span');
+        inner.className = 'toggle-inner';
+        for (let i = 0; i < 3; i += 1) {
+            const line = document.createElement('span');
+            line.className = 'toggle-line';
+            inner.appendChild(line);
+        }
+
+        const circle = document.createElement('span');
+        circle.className = 'toggle-circle';
+        circle.setAttribute('aria-hidden', 'true');
+        circle.innerHTML = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 6 L15 12 L9 18" fill="none" stroke="var(--shell-primary-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        inner.appendChild(circle);
+        toggle.appendChild(inner);
+    }
+
+    toggle.dataset.shellNormalized = 'true';
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    ensureSharedIcons();
+    const sidebarLayout = document.querySelector('.sidebar-layout');
+    const sidebar = document.querySelector('.sidebar');
+    const toggle = document.querySelector('.sidebar-toggle') || null;
+    const toggleButtons = document.querySelectorAll('.sidebar-toggle');
     const sidebarBack = document.querySelector('.sidebar-back');
     const alertCloseButtons = document.querySelectorAll('.alert button[data-dismiss="alert"]');
     const navItems = document.querySelectorAll('.nav-item');
     const searchInput = document.querySelector('.search-pill input') || document.querySelector('.search-input input') || null;
 
+    toggleButtons.forEach((toggle) => {
+        ensureSharedSidebarToggle(toggle);
+        toggle.removeAttribute('onclick');
+        toggle.addEventListener('click', handleSidebarToggle);
+    });
+
+    const themeButtons = document.querySelectorAll('.theme-btn');
+    const applyTheme = (nextTheme) => {
+        const theme = ['theme-glass', 'theme-neumorphism', 'theme-minimal'].includes(nextTheme) ? nextTheme : 'theme-glass';
+        document.body.classList.remove('theme-glass', 'theme-neumorphism', 'theme-minimal');
+        document.body.classList.add(theme);
+        themeButtons.forEach((button) => {
+            const active = button.dataset.theme === theme;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', String(active));
+        });
+        try {
+            localStorage.setItem('portal-theme', theme);
+        } catch (err) {
+            // ignore localStorage access issues in restricted environments
+        }
+    };
+
+    if (themeButtons.length) {
+        let savedTheme = 'theme-glass';
+        try {
+            savedTheme = localStorage.getItem('portal-theme') || 'theme-glass';
+        } catch (err) {
+            // ignore localStorage errors in restricted browsers
+        }
+        applyTheme(savedTheme);
+        themeButtons.forEach((button) => {
+            button.addEventListener('click', () => applyTheme(button.dataset.theme || 'theme-glass'));
+        });
+    }
+
     function isMobileView() {
         return window.innerWidth <= 992;
     }
 
-    function setSidebarState(open) {
-        if (!sidebar || !sidebarLayout || !toggle) return;
-
-        // normalize to boolean
-        open = !!open;
-
-        if (isMobileView()) {
-            sidebar.classList.toggle('open', open);
-            toggle.classList.toggle('active', open);
-            sidebar.setAttribute('aria-hidden', String(!open));
-            toggle.setAttribute('aria-expanded', String(open));
-            return;
+    if (sidebar && sidebarLayout && typeof window.toggleSidebar === 'function') {
+        const isDesktop = !isMobileView();
+        if (isDesktop) {
+            sidebar.classList.remove('open');
+            sidebar.setAttribute('aria-hidden', 'false');
+            sidebarLayout.classList.remove('sidebar-collapsed');
         }
-
-        // Desktop: when open === true -> remove collapsed class
-        sidebarLayout.classList.toggle('sidebar-collapsed', !open);
-        // Toggle active on the button to reflect open state
-        toggle.classList.toggle('active', open);
-        // Accessibility attributes
-        sidebar.setAttribute('aria-hidden', String(!open));
-        toggle.setAttribute('aria-expanded', String(open));
-    }
-
-    if (toggle && sidebar && sidebarLayout) {
-        toggle.addEventListener('click', function () {
-            if (isMobileView()) {
-                const shouldOpen = !sidebar.classList.contains('open');
-                setSidebarState(shouldOpen);
-            } else {
-                const isCollapsed = sidebarLayout.classList.contains('sidebar-collapsed');
-                setSidebarState(isCollapsed);
-            }
-        });
     }
 
     if (sidebarBack) {
         sidebarBack.addEventListener('click', function () {
-            const pathParts = window.location.pathname.split('/');
-            if (pathParts[pathParts.length - 1] === '') {
-                pathParts.pop();
-            }
-            if (pathParts.length > 1 && ['user', 'admin'].includes(pathParts[pathParts.length - 2])) {
-                pathParts.splice(pathParts.length - 2, 2, 'welcome.html');
-            } else {
-                pathParts[pathParts.length - 1] = 'welcome.html';
-            }
-            const relativePath = pathParts.join('/');
-            if (window.location.protocol === 'file:') {
-                window.location.href = relativePath;
-            } else if (window.location.origin && window.location.origin !== 'null') {
-                window.location.href = window.location.origin + relativePath;
-            } else {
-                window.location.href = relativePath;
+            try {
+                if (window.location.protocol === 'file:') {
+                    // Local/file preview: navigate to templates folder
+                    window.location.href = 'templates/welcome.html';
+                } else {
+                    // When served, prefer absolute path
+                    window.location.href = '/templates/welcome.html';
+                }
+            } catch (err) {
+                // Fallback to relative path
+                window.location.href = 'templates/welcome.html';
             }
         });
     }
+    // If sidebarBack is an anchor (<a>) we do not attach the handler so the href works natively
+
 
     window.addEventListener('resize', function () {
         if (!isMobileView() && sidebar) {
@@ -155,6 +271,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    const notificationBtn = document.querySelector('.notification-btn');
+    const profileMenuEl = document.querySelector('.profile-menu');
+    const profileDropdown = profileMenuEl ? profileMenuEl.querySelector('.profile-dropdown') : null;
+
     const languageSwitcher = document.querySelector('.language-switcher');
     const languageButton = document.querySelector('.language-button');
     const languageLabel = document.querySelector('.language-label');
@@ -219,6 +339,41 @@ document.addEventListener('DOMContentLoaded', function () {
         // remove focus style on blur
         searchInput.addEventListener('blur', function () {
             const pill = searchInput.closest('.search-pill'); if (pill) pill.classList.remove('focus');
+        });
+    }
+
+    // Notification button behaviour
+    if (notificationBtn) {
+        notificationBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            // For demo: toggle a simple alert drawer or mark as read
+            notificationBtn.classList.toggle('open');
+            const count = notificationBtn.querySelector('.notif-count');
+            if (notificationBtn.classList.contains('open') && count) {
+                // clear count after opening (demo behaviour)
+                count.style.opacity = '0';
+                setTimeout(() => count.remove(), 400);
+            }
+        });
+        document.addEventListener('click', function () {
+            notificationBtn.classList.remove('open');
+        });
+    }
+
+    // Profile dropdown behaviour
+    if (profileMenuEl && profileDropdown) {
+        profileMenuEl.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const isOpen = profileMenuEl.classList.toggle('open');
+            profileDropdown.setAttribute('aria-hidden', String(!isOpen));
+        });
+
+        // close when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!profileMenuEl.contains(e.target)) {
+                profileMenuEl.classList.remove('open');
+                profileDropdown.setAttribute('aria-hidden', 'true');
+            }
         });
     }
 
